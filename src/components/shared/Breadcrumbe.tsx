@@ -1,8 +1,9 @@
 type TBreadcrumb = {
-   coverImage: string
-   title: string
+   coverImage?: string
+   title?: string
+   video?: string
 }
-const Breadcrumbe = ({ coverImage = '/cover1.webp', title }: TBreadcrumb) => {
+const Breadcrumbe = ({ coverImage, title, video }: TBreadcrumb) => {
    return (
       <div className="relative bg-gray-200">
          <div className="h-96 bg-cover bg-center" style={{ backgroundImage: `url(${coverImage})` }} />
@@ -12,9 +13,18 @@ const Breadcrumbe = ({ coverImage = '/cover1.webp', title }: TBreadcrumb) => {
             </svg>
          </div>
          <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
-            <div className="text-center">
-               <h1 className="text-white text-5xl font-bold mb-4">{title}</h1>
-            </div>
+            {title && (
+               <div className="text-center">
+                  <h1 className="text-white text-5xl font-bold mb-4">{title}</h1>
+               </div>
+            )}
+            {video && (
+               <div className="absolute inset-0">
+                  <video className="w-full h-full" autoPlay={true} muted={true} loop={true} controls={false}>
+                     <source src={video} />
+                  </video>
+               </div>
+            )}
          </div>
       </div>
    )

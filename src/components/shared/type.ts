@@ -25,3 +25,10 @@ export type TAccordion = {
   title: string;
   content: any[];
 };
+
+export type TProductPrevie = {
+  images: {
+    color: string;
+    urls: string[];
+  }[];
+};

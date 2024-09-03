@@ -1,20 +1,21 @@
 'use client'
-import CardBody from '../shared/CardBody'
-import { motion } from 'framer-motion';
-import { TProductProps } from './type'
-import Image from 'next/image'
-import { ConversLogo, NikeLogo } from '@/constant/svgIcons'
-import { Button } from '../ui/button'
-import { Icons } from '@/constant/icons'
 import { useState } from 'react'
+import { ConversLogo, NikeLogo } from '@/constant/svgIcons'
+import CardBody from '../shared/CardBody'
+import { TProductProps } from './type';
+import { motion } from 'framer-motion';
 import { HIDE_BUTTON } from '@/lib/motion';
+import { Icons } from '@/constant/icons';
 import MoreDetails from './MoreDetails';
+import { Button } from '../ui/button';
+import Image from 'next/image';
 import { toast } from 'sonner';
+import Link from 'next/link';
 
-const Product = ({ props }: TProductProps) => {
+const ProductList = ({ props }: TProductProps) => {
    const [hoverd, setHoved] = useState(false)
-   const { title, description, image, brand, price } = props
-   const getBrandLogo = () => {
+   const { title, description, image, brand, price, id } = props
+   const getProductBrand = () => {
       switch (brand) {
          case 'Nike':
             return <NikeLogo width={50} height={50} />;
@@ -30,12 +31,14 @@ const Product = ({ props }: TProductProps) => {
    return (
       <div className='col-span-4'>
          <CardBody className='relative'>
-            <div className='relative h-[25rem] w-full'>
-               <Image src={image} fill alt={title} />
-            </div>
+            <Link href={`/productos/${id}`}>
+               <div className='relative h-[25rem] w-full'>
+                  <Image src={image} fill alt={title} />
+               </div>
+            </Link>
             <div>
                <div className='flex items-center justify-between'>
-                  <span>{getBrandLogo()}</span>
+                  <span>{getProductBrand()}</span>
                   <MoreDetails
                      title={title}
                      description={description}
@@ -64,4 +67,4 @@ const Product = ({ props }: TProductProps) => {
    )
 }
 
-export default Product
+export default ProductList

@@ -70,10 +70,45 @@ const config = {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0' },
         },
+        marquee: {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(calc(-100% - var(--gap)))' },
+        },
+        'marquee-vertical': {
+          from: { transform: 'translateY(0)' },
+          to: { transform: 'translateY(calc(-100% - var(--gap)))' },
+        },
+        'marquee-x': {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(calc(-100% - var(--gap)))' },
+        },
+        'marquee-y': {
+          from: { transform: 'translateY(0)' },
+          to: { transform: 'translateY(calc(-100% - var(--gap)))' },
+        },
+        'bg-position': {
+          '0%': { backgroundPosition: '0% 50%' },
+          '100%': { backgroundPosition: '100% 50%' },
+        },
+        'reveal-up': {
+          '0%': { opacity: '0', transform: 'translateY(80%)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        'reveal-down': {
+          '0%': { opacity: '0', transform: 'translateY(-80%)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        'content-blur': {
+          '0%': { filter: 'blur(0.3rem)' },
+          '100%': { filter: 'blur(0)' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'marquee-horizontal': 'marquee-x var(--duration) infinite linear',
+        marquee: 'marquee var(--duration) linear infinite',
+        'marquee-vertical': 'marquee-vertical var(--duration) linear infinite',
       },
     },
   },

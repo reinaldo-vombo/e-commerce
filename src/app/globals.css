@@ -75,7 +75,7 @@ h1 {
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border tracking-wider;
   }
   body {
     @apply bg-background text-foreground;
@@ -85,11 +85,11 @@ h1 {
   }
 
   .h1-semibold {
-    @apply text-[2.25rem] font-semibold leading-[140%] tracking-tighter;
+    @apply text-[2.25rem] font-semibold leading-[140%] tracking-wider;
   }
 
   .h2-bold {
-    @apply text-[1.875rem] font-bold leading-[140%] tracking-wide;
+    @apply text-[1.875rem] font-bold leading-[140%] tracking-wider;
   }
 
   .h3-bold {
@@ -97,14 +97,12 @@ h1 {
   }
 
   .base-semibold {
-    @apply text-base font-semibold leading-[140%] tracking-tighter;
+    @apply text-base font-semibold leading-[140%] tracking-wider;
   }
   .padding {
     @apply py-[100px]
   }
-  .images {
-    @apply translate-x-0 transition-transform ease-linear duration-200 hover:translate-x-[-20px]
-  }
+
 }
 .ocean {
   height: 5%;

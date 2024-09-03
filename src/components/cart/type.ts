@@ -10,3 +10,7 @@ export type TCartItem = {
     noBackground: string;
   };
 };
+export type IcrementeItemProps = {
+  basePrice: number;
+  onPriceChange: (totalPrice: number) => void;
+};

@@ -3,11 +3,17 @@ export type TProduct = {
   title: string;
   display: string;
   brand: string;
-  category: string[];
+  style: string[];
+  size: number[];
+  category: string;
   price: number;
+  gallery: { image: string; name: string }[];
   noBackground: string;
   image: string;
-  images: string[];
+  images: {
+    color: string;
+    urls: string[];
+  }[];
   description: string;
 };
 

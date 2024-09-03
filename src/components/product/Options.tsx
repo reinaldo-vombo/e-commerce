@@ -26,7 +26,7 @@ const Options = () => {
                {Array.from({ length: 5 }).map((_, i) => (
                   <motion.div
                      whileTap={{ scale: 0.5 }}
-                     className={`bg-slate-100 p-6 rounded-md cursor-pointer ${selectedSize === i ? 'outline outline-1 outline-black' : ''}`}
+                     className={`p-6 rounded-md cursor-pointer ${selectedSize === i ? 'bg-black text-white' : 'bg-slate-100'}`}
                      key={i}
                      onClick={() => handleSizeSelecte(i)}
                   >

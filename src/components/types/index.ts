@@ -18,3 +18,8 @@ export type TProduct = {
   images: string[];
   description: string;
 };
+export type ExpandableProps = {
+  list?: { image: string; title: string }[];
+  autoPlay?: boolean;
+  className?: string;
+};

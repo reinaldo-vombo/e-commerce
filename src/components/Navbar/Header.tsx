@@ -1,16 +1,19 @@
 'use client'
-import { Logo, } from "@/constant/svgIcons"
+import { Fragment, useEffect, useState } from "react"
 import { ShiftingDropDown } from "./Dropdwon"
-import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { Logo, } from "@/constant/svgIcons"
 import { Icons } from "@/constant/icons"
-import TopBar from "./TopBar"
-import Modal from "../shared/Modal"
-import Lognin from "../auth/forms/Lognin"
 import SearchDropdow from "../SearchDropdow"
 import CartSidebar from "../cart/Sidebar"
-import { usePathname } from "next/navigation"
+import TopBar from "./TopBar"
+import Lognin from "../auth/forms/Lognin"
+import Modal from "../shared/Modal"
 import BlogNav from "./BlogNav"
-import { Fragment, useEffect, useState } from "react"
+import Link from "next/link"
+import { PRODUCTS } from "@/constant/site-content"
+
+const HAS_ITEM = PRODUCTS.length
 
 const Header = () => {
    const path = usePathname()
@@ -29,7 +32,7 @@ const Header = () => {
    }, []);
 
    return (
-      <header className={`fixed w-full z-30 ${path === '/noticias' ? 'bg-black' : scrolled ? 'bg-white' : 'bg-transparent text-white'} transition-all ease-in`}>
+      <header className={`fixed w-full z-30 ${path === '/noticias' ? 'bg-black' : scrolled ? 'bg-white shadow' : `bg-transparent ${path === '/' ? 'text-black' : 'text-white'} `} transition-all ease-in`}>
          {path === '/noticias' ? <BlogNav /> : (
             <Fragment>
                <TopBar />
@@ -48,7 +51,9 @@ const Header = () => {
                         <Modal btn={<Icons.user width={25} />} title="Entart" className="hover:bg-slate-200 rounded-full p-2 flex items-center justify-center">
                            <Lognin />
                         </Modal>
-                        <CartSidebar />
+                        <Link href='/cart' className="hover:bg-slate-200 rounded-full p-2 flex items-center justify-center">
+                           <Icons.shoppingCart width={25} fill={HAS_ITEM > 0 ? '#000' : 'none'} />
+                        </Link>
                         <button className="hover:bg-slate-200 rounded-full p-2 flex items-center justify-center">
                            <Icons.heart width={25} />
                         </button>
