@@ -90,7 +90,7 @@ export const Feedback = ({ stars, setStars }: TFeedbackProps) => {
             initial={{ height: 0, translateY: 15 }}
             className="px-2"
             transition={{ ease: 'easeInOut', duration: 0.3 }}
-            animate={stars ? { height: '195px', width: '330px' } : {}}>
+            animate={stars ? { height: '195px', width: '100%' } : {}}>
             <AnimatePresence>
                {!isSubmitted ? (
                   <motion.span exit={{ opacity: 0 }} initial={{ opacity: 1 }}>

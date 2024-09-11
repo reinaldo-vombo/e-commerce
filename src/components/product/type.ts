@@ -7,6 +7,8 @@ export type TProduct = {
   size: number[];
   category: string;
   price: number;
+  discountPercentage?: number; // Optional field
+  discountedPrice?: number;
   gallery: { image: string; name: string }[];
   noBackground: string;
   image: string;
@@ -26,3 +28,4 @@ export type TProductModal = {
   image: string;
   description: string;
 };
+

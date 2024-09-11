@@ -63,6 +63,8 @@ export const PRODUCTS = [
     style: ['Sapatilhas', 'Sapatilhas para homem'],
     category: 'homens',
     price: 10000,
+    discountPercentage: 20, // Optional field
+    discountedPrice: 0,
     gallery: [
       { image: '/image.jpg', name: '@demoUser' },
       { image: '/pdp.jpg', name: '@demoUser' },
@@ -93,6 +95,9 @@ export const PRODUCTS = [
     style: ['Sapatilhas', 'Sapatilhas para homem'],
     category: 'homens',
     price: 8000,
+    discountPercentage: 15, // Optional field
+    discountedPrice: 0,
+    gallery: [],
     noBackground: '/product/a09784c_c_08x1-removebg-preview-transformed.png',
     image: '/product/a09784c_c_08x1.jpg',
     images: [
@@ -118,6 +123,8 @@ export const PRODUCTS = [
     style: ['Sapatilhas', 'Sapatilhas para homem'],
     category: 'homens',
     price: 45000,
+    discountPercentage: 5, // Optional field
+    discountedPrice: 0,
     gallery: [],
     noBackground: '/product/AIR+JORDAN+1+MID.jpg',
     image: '/product/AIR+JORDAN+1+MID.jpg',
@@ -144,6 +151,8 @@ export const PRODUCTS = [
     size: [36, 37.5, 39, 40, 40.5, 41, 42, 42.5, 43, 44, 45, 45.5, 46, 47],
     category: 'homens',
     price: 7000,
+    discountPercentage: 10, // Optional field
+    discountedPrice: 0,
     gallery: [],
     noBackground: '/product/AIR+FORCE+1+07.png',
     image: '/product/AIR+FORCE+1+07.png',
@@ -170,6 +179,8 @@ export const PRODUCTS = [
     size: [36, 37.5, 39, 40, 40.5, 41, 42, 42.5, 43, 44, 45, 45.5, 46, 47],
     category: 'mulhers',
     price: 15000,
+    discountPercentage: 20, // Optional field
+    discountedPrice: 0,
     gallery: [],
     noBackground: '/product/AIR+FORCE+1+07.png',
     image: '/product/a03427c_c_08x1.jpg',

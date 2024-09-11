@@ -12,6 +12,8 @@ import Modal from "../shared/Modal"
 import BlogNav from "./BlogNav"
 import Link from "next/link"
 import { PRODUCTS } from "@/constant/site-content"
+import WishList from "../wishList/Sidebar"
+import InfoNav from "./InfoNav"
 
 const HAS_ITEM = PRODUCTS.length
 
@@ -33,7 +35,7 @@ const Header = () => {
 
    return (
       <header className={`fixed w-full z-30 ${path === '/noticias' ? 'bg-black' : scrolled ? 'bg-white shadow' : `bg-transparent ${path === '/' ? 'text-black' : 'text-white'} `} transition-all ease-in`}>
-         {path === '/noticias' ? <BlogNav /> : (
+         {path === '/noticias' ? <BlogNav /> : path === '/checkout' ? <InfoNav /> : (
             <Fragment>
                <TopBar />
                <div className="container">
@@ -54,9 +56,7 @@ const Header = () => {
                         <Link href='/cart' className="hover:bg-slate-200 rounded-full p-2 flex items-center justify-center">
                            <Icons.shoppingCart width={25} fill={HAS_ITEM > 0 ? '#000' : 'none'} />
                         </Link>
-                        <button className="hover:bg-slate-200 rounded-full p-2 flex items-center justify-center">
-                           <Icons.heart width={25} />
-                        </button>
+                        <WishList />
                      </div>
                   </nav>
                </div>

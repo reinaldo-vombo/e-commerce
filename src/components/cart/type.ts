@@ -1,4 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
+import { TProduct } from '../product/type';
+import { CartItem } from '@/store/type';
 
 export type TEmptyCart = {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
@@ -6,11 +8,19 @@ export type TEmptyCart = {
 export type TCartItem = {
   product: {
     title: string;
-    price: number;
+    id: string;
     noBackground: string;
   };
 };
 export type IcrementeItemProps = {
   basePrice: number;
-  onPriceChange: (totalPrice: number) => void;
+  productId: string;
+  onPriceChange: (newPrice: number, productId: string) => void;
+};
+export type TListItems = {
+  cart: CartItem[];
+  onPriceChange: (newPrice: number, productId: string) => void;
+};
+export type TPaymentProps = {
+  totalPrice: number;
 };

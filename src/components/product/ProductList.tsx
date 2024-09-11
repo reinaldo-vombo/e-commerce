@@ -11,10 +11,13 @@ import { Button } from '../ui/button';
 import Image from 'next/image';
 import { toast } from 'sonner';
 import Link from 'next/link';
+import { useCartStore } from '@/store/cartStore';
 
 const ProductList = ({ props }: TProductProps) => {
+   const addToCart = useCartStore((state) => state.addToCart);
    const [hoverd, setHoved] = useState(false)
    const { title, description, image, brand, price, id } = props
+
    const getProductBrand = () => {
       switch (brand) {
          case 'Nike':
@@ -55,7 +58,7 @@ const ProductList = ({ props }: TProductProps) => {
                <motion.div className='w-full' onMouseEnter={() => setHoved(true)} onMouseLeave={() => setHoved(false)}>
                   <Button className='w-full rounded-xl'>Compar</Button>
                </motion.div>
-               <motion.div variants={HIDE_BUTTON} initial='hidden' animate={hoverd ? 'visible' : 'hidden'} transition={{ duration: 0.3 }} className='w-full'>
+               <motion.div variants={HIDE_BUTTON} initial='hidden' animate={hoverd ? 'visible' : 'hidden'} transition={{ duration: 0.3 }} className='w-full' onClick={() => addToCart({ id, title, price, image })}>
                   <Button className='w-full rounded-xl bg-slate-200 text-black'>Adicionar ao carrinho</Button>
                </motion.div>
             </div>

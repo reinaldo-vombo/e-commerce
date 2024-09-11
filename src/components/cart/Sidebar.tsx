@@ -12,7 +12,7 @@ import { Button } from "../ui/button"
 import { Separator } from "../ui/separator"
 import { useState } from "react"
 import EmptyCart from "./EmptyCart"
-import ICartItem from "./ICartItem"
+import ICartItem from "../wishList/ListItem"
 
 const HAS_ITEM = PRODUCTS.length
 const getTotalPrice = () => {

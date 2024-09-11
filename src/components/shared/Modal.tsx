@@ -14,8 +14,8 @@ const Modal = ({ btn, children, title, className }: TModalProps) => {
          <DialogContent>
             <DialogHeader>
                <DialogTitle>{title}</DialogTitle>
-               {children}
             </DialogHeader>
+            {children}
          </DialogContent>
       </Dialog>
 

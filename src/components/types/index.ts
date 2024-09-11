@@ -6,18 +6,7 @@ export type TModalProps = {
   children: ReactNode;
   className?: string;
 };
-export type TProduct = {
-  id: string;
-  title: string;
-  display: string;
-  brand: string;
-  category: string[];
-  price: number;
-  noBackground: string;
-  image: string;
-  images: string[];
-  description: string;
-};
+
 export type ExpandableProps = {
   list?: { image: string; title: string }[];
   autoPlay?: boolean;

@@ -12,12 +12,15 @@ import Modal from "../shared/Modal"
 import Image from "next/image"
 import Gallery from "../product/Gallery"
 import ProductCarousel from "../shared/Carousel"
+import { useCartStore } from "@/store/cartStore"
+import Details from "../product/Details"
 
 type TSigleProduct = {
    product: TProduct
 }
 
 const SigleProduct = ({ product }: TSigleProduct) => {
+   const addToCart = useCartStore((state) => state.addToCart);
    const [preview, setPreview] = useState<string[] | null>(product.images[0].urls)
    const [slectedColor, setSelectedColor] = useState<number | null>()
    const selectProductColorPreview = (colorArr: string[], index: number) => {
@@ -50,7 +53,7 @@ const SigleProduct = ({ product }: TSigleProduct) => {
                         </div>
                         <SizeTabel productSize={product.size} />
                         <div className="grid gap-6">
-                           <Button className="rounded-full py-6 w-full font-semibold tracking-wider">Adicionar ao carrinho</Button>
+                           <Button className="rounded-full py-6 w-full font-semibold tracking-wider" onClick={() => addToCart(product)}>Adicionar ao carrinho</Button>
                            <Button className="rounded-full bg-white text-black border border-slate-200 py-6 w-full flex items-center gap-3 hover:text-white">
                               Marcar como favorito <Icons.heart width={20} />
                            </Button>
@@ -65,7 +68,12 @@ const SigleProduct = ({ product }: TSigleProduct) => {
                               <p className="font-semibold">{product.description}</p>
                            </div>
                            <Modal btn={<p className="underline font-semibold text-left">Ver detalhes do producto</p>} title='Selecioneum local de levantamento'>
-                              <SeachStore />
+                              <Details
+                                 title={product.title}
+                                 image={product.image}
+                                 price={product.price}
+                                 description={product.description}
+                              />
                            </Modal>
                            <Comments />
                         </div>

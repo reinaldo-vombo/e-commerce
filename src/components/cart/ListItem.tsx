@@ -1,37 +1,27 @@
 'use client'
-import { PRODUCTS } from '@/constant/site-content'
 import Image from 'next/image'
-import React, { useState } from 'react'
+import React from 'react'
 import IcrementeItem from './IcrementeItem'
 import { Icons } from '@/constant/icons'
 import EmptyCart from './EmptyCart'
 import { AnimatePresence, motion } from 'framer-motion'
-import { toast } from 'sonner'
+import { TListItems } from './type'
+import { useCartStore } from '@/store/cartStore'
 
-const ListItem = () => {
-   const [products, setProducts] = useState(PRODUCTS);
+const ListItem = ({ onPriceChange, cart }: TListItems) => {
+   const removeFromCart = useCartStore((state) => state.removeFromCart);
 
-   const handleRemove = (id: string) => {
-      setProducts((prevProducts) => prevProducts.filter((product) => product.id !== id));
-      toast.success('Item removido')
-   };
-   const handlePriceChange = (id: string, newPrice: number) => {
-      setProducts((prevProducts) =>
-         prevProducts.map((product) =>
-            product.id === id ? { ...product, price: newPrice } : product
-         )
-      );
-   };
    return (
       <div className='grid gap-8 mt-12'>
-         <AnimatePresence>
-            {products.length > 0 ? products.map((product) => (
+         <AnimatePresence mode='popLayout'>
+            {cart.length > 0 ? cart.map((product) => (
                <motion.div
+                  layout
+                  initial={{ opacity: 0, x: -400, scale: 0.5 }}
+                  animate={{ opacity: 1, x: 0, scale: 1 }}
+                  exit={{ opacity: 0, x: 200, scale: 1.2 }}
+                  transition={{ duration: 0.6, type: "spring" }}
                   key={product.id}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 20 }}
-                  transition={{ duration: 0.3 }}
                   className='flex items-center gap-2'
                >
                   <div className='bg-black w-full text-white rounded-lg p-4 flex items-center justify-between gap-6'>
@@ -43,12 +33,16 @@ const ListItem = () => {
                      <div>
                         <h3 className='base-semibold'>Preto</h3>
                      </div>
-                     <IcrementeItem basePrice={product.price} onPriceChange={(newPrice) => handlePriceChange(product.id, newPrice)} />
+                     <IcrementeItem
+                        basePrice={product.price}
+                        productId={product.id}
+                        onPriceChange={(newPrice) => onPriceChange(newPrice, product.id,)}
+                     />
                      <div className='w-32'>
                         <h3 className='base-semibold'>{product.price} (kz)</h3>
                      </div>
                   </div>
-                  <button type='button' aria-label='Remove item' onClick={() => handleRemove(product.id)}>
+                  <button type='button' aria-label='x icon' onClick={() => removeFromCart(product.id)}>
                      <Icons.x width={25} />
                   </button>
                </motion.div>

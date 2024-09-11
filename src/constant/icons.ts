@@ -11,8 +11,12 @@ import {
   AdjustmentsVerticalIcon,
   MapPinIcon,
   ArrowLeftIcon,
-  ArrowRightIcon
+  ArrowRightIcon,
+  TruckIcon,
+  ArrowPathIcon,
+  PhoneIcon,
 } from '@heroicons/react/24/outline';
+
 export const Icons = {
   user: UserIcon,
   x: XMarkIcon,
@@ -26,5 +30,8 @@ export const Icons = {
   filter: AdjustmentsVerticalIcon,
   mapPin: MapPinIcon,
   arrowRight: ArrowRightIcon,
-  arrowLeft: ArrowLeftIcon
+  arrowLeft: ArrowLeftIcon,
+  truck: TruckIcon,
+  arrowPath: ArrowPathIcon,
+  phone: PhoneIcon,
 };
