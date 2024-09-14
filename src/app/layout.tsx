@@ -20,9 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${montserrat.className} ${archivo.className}`}>
-        <main>
-          {children}
-        </main>
+        {children}
         <Toaster
           position="bottom-right"
         />

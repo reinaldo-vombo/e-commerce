@@ -291,3 +291,29 @@ export const FEEDBACKS = [
   { id: '1', replay: 'Oh this is rally nice shoe', stars: 5 },
   { id: '1', replay: 'Oh this is rally nice shoe', stars: 3 },
 ];
+export const OVERVIEWS = [
+  {
+    id: '1',
+    title: 'Total de vendas',
+    total: 32499.0,
+    new: 12.9,
+  },
+  {
+    id: '2',
+    title: 'Total de encomendas',
+    total: 32499.0,
+    new: 12.9,
+  },
+  {
+    id: '3',
+    title: 'Visitantes',
+    total: 32499.0,
+    new: 12.9,
+  },
+  {
+    id: '4',
+    title: 'Rembolso',
+    total: 32499.0,
+    new: 12.9,
+  },
+];
