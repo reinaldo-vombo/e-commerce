@@ -8,6 +8,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { ArrowLeft, ArrowUpDown, BookCheck, CreditCard, Home, Images, Megaphone, MessageSquare, Settings, ShoppingBag, Store, User } from "lucide-react";
 import NavBar from "./NavBar";
+import { Separator } from "../ui/separator";
 
 type TDashbord = {
    children: ReactNode
@@ -104,7 +105,7 @@ export function Dasboard({ children }: TDashbord) {
    return (
       <div
          className={cn(
-            "rounded-md flex flex-col md:flex-row bg-neutral-800 w-full flex-1 mx-auto border border-neutral-200 dark:border-neutral-700 overflow-hidden",
+            "rounded-md flex flex-col md:flex-row bg-white dark:bg-neutral-800 w-full flex-1 mx-auto border border-neutral-200 dark:border-neutral-700 overflow-hidden",
             "h-screen" // for your use case, use `h-screen` instead of `h-[60vh]`
          )}
       >
@@ -137,8 +138,9 @@ export function Dasboard({ children }: TDashbord) {
                </div>
             </SidebarBody>
          </Sidebar>
-         <div className="w-full">
+         <div className="w-full overflow-y-auto">
             <NavBar />
+            <Separator />
             <main className="text-white px-6">
                {children}
             </main>

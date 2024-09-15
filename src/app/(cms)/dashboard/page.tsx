@@ -1,7 +1,7 @@
 import Breadcrumbe from '@/components/dashboard/Breadcrumbe'
-import OverViewCards from '@/components/dashboard/OverViewCards'
-import OverviewCharts from '@/components/dashboard/OverviewCharts'
-import React from 'react'
+import OverViewCards from '@/components/dashboard/overview/OverViewCards'
+import OverviewCharts from '@/components/dashboard/overview/OverviewCharts'
+import OverViewTable from '@/components/dashboard/overview/OverViewTable'
 
 export default function page() {
    return (
@@ -9,6 +9,7 @@ export default function page() {
          <Breadcrumbe title='Overview' />
          <OverViewCards />
          <OverviewCharts />
+         <OverViewTable />
       </section>
    )
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { ArrowUpDown, BookCheck, DollarSign, ShoppingBag } from 'lucide-react';
 import {
   AdidasLogo,
   ConversLogo,
@@ -294,26 +295,30 @@ export const FEEDBACKS = [
 export const OVERVIEWS = [
   {
     id: '1',
-    title: 'Total de vendas',
+    title: 'Orcamento ',
     total: 32499.0,
     new: 12.9,
+    icon: React.createElement(DollarSign),
   },
   {
     id: '2',
-    title: 'Total de encomendas',
+    title: 'Productos',
     total: 32499.0,
     new: 12.9,
+    icon: React.createElement(ShoppingBag),
   },
   {
     id: '3',
-    title: 'Visitantes',
+    title: 'Encomendas',
     total: 32499.0,
     new: 12.9,
+    icon: React.createElement(BookCheck),
   },
   {
     id: '4',
     title: 'Rembolso',
     total: 32499.0,
     new: 12.9,
+    icon: React.createElement(ArrowUpDown),
   },
 ];
