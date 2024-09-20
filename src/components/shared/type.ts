@@ -32,3 +32,8 @@ export type TProductPrevie = {
     urls: string[];
   }[];
 };
+export type TFileUploder = {
+  maxFiles?: number;
+  color?: string;
+  size?: 'small' | 'medium' | 'large';
+};

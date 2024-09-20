@@ -238,6 +238,7 @@ export const CATEGORY = [
   { id: '2', image: '/womens.jpg', url: 'womens', title: 'Mulheres' },
   { id: '3', image: '/kids.jpg', url: 'kids', title: 'Crianças' },
 ];
+export const GENDER = ['Homem', 'Mulher', 'Unisex'];
 export const CATEGORIES = [
   'Stilo de vida',
   'Corrida',
@@ -278,6 +279,7 @@ export const BRANDS = [
     logo: React.createElement(NDLogo, { width: 40, height: 40 }),
   },
 ];
+export const BRAND = ['Nike', 'Converse', 'Adidas', 'Puma', 'Nd'];
 export const SOCIAL_MEDIA = [
   { id: '1', logo: '/facebook.png', url: '#' },
   { id: '2', logo: '/x.png', url: '#' },
