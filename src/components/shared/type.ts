@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { Dispatch, ReactNode, SetStateAction } from 'react';
 
 export type TPoolTip = {
   button: any;
@@ -9,6 +9,8 @@ export type TSelect = {
   placeholder: string;
   className?: string;
   options: string[];
+  name?: string;
+  disabled?: boolean;
 };
 export type SheetProps = {
   children: ReactNode;
@@ -36,4 +38,11 @@ export type TFileUploder = {
   maxFiles?: number;
   color?: string;
   size?: 'small' | 'medium' | 'large';
+  setPreview: React.Dispatch<
+    React.SetStateAction<
+      (File & {
+        preview: string;
+      })[]
+    >
+  >;
 };

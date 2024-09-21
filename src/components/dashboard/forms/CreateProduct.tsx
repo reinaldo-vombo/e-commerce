@@ -3,7 +3,6 @@ import { Button } from '@/components/ui/button'
 import {
    Form,
    FormControl,
-   FormDescription,
    FormField,
    FormItem,
    FormLabel,
@@ -14,26 +13,27 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { productSchema } from './FormValidation'
-import ProductMedia from '../product-inventory/ProductMedia'
-import { ScrollArea } from '@/components/ui/scroll-area'
 import TextEditor from '../shared/TextEditor'
 import Selector from '@/components/shared/Selector'
-import { BRAND, CATEGORIES, GENDER } from '@/constant/site-content'
-import PriceSelector from '../product-inventory/PriceSelector'
+import { BRAND, CATEGORIES, COLORES, GENDER, SIZES } from '@/constant/site-content'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
 import FileUploader from '@/components/shared/FileUploader'
-import Image from 'next/image'
 import Modal from '@/components/shared/Modal'
 import ImagePreview from '../product-inventory/ImagePreview'
 import { useState } from 'react'
-
-
+import AddColoresModal from '../product-inventory/AddColores'
+import { Checkbox } from '@/components/ui/checkbox'
+import { Plus } from 'lucide-react'
+import Image from 'next/image'
+import SizeTabel from '@/components/shared/SizeTabel'
 
 const CreateProduct = () => {
-   const [preview, setPreview] = useState('')
+   const [preview, setPreview] = useState<(File & { preview: string })[]>([])
+   const [colorPreview, setColerPreview] = useState<(File & { preview: string })[]>([])
+   const [enableCupon, setEnableCupon] = useState(false)
    function onSubmit() {
       // Handle form submission
    }
@@ -52,7 +52,7 @@ const CreateProduct = () => {
    return (
       <Form {...form}>
          <form onSubmit={form.handleSubmit(onSubmit)}>
-            <div className="grid grid-cols-12 gap-4">
+            <div className="grid grid-cols-12 gap-4 relative">
                <ImagePreview preview={preview} />
                <div className='col-span-8'>
                   <Tabs defaultValue="general" className="w-full">
@@ -85,18 +85,26 @@ const CreateProduct = () => {
                                  <TextEditor />
                               </div>
                               <div className='flex items-center gap-4'>
-                                 <Selector placeholder='Categoria' options={CATEGORIES} className='w-full' />
-                                 <Selector placeholder='Sexo' options={GENDER} className='w-full' />
+                                 <Selector placeholder='Categoria' name='category' options={CATEGORIES} className='w-full' />
+                                 <Selector placeholder='Sexo' name='gender' options={GENDER} className='w-full' />
                               </div>
                               <div>
                                  <div className="space-y-2">
                                     <Label className='text-slate-500'>Imagem</Label>
-                                    <FileUploader maxFiles={1} />
-                                    <div>
-                                       <h2>Adicionar cores</h2>
-                                       <Modal btn={<ModalButton />} title="Uplode das imagem">
-                                          <FileUploader maxFiles={7} />
-                                       </Modal>
+                                    <FileUploader maxFiles={1} setPreview={setPreview} />
+                                    <div className="space-y-2 grid">
+                                       <Label className='text-slate-500'>Cores</Label>
+                                       <div className='flex items-center justify-center gap-3'>
+                                          <AddColoresModal previews={colorPreview} />
+                                          <Modal
+                                             btn={<ModalButton />}
+                                             title="Cores do producto">
+                                             <Selector placeholder='Sexo' name='colore' options={COLORES} className='w-full' />
+                                             <Separator />
+                                             <FileUploader maxFiles={7} setPreview={setColerPreview} />
+                                          </Modal>
+
+                                       </div>
                                     </div>
                                  </div>
                               </div>
@@ -113,72 +121,100 @@ const CreateProduct = () => {
                                  <TextEditor />
                               </div>
                               <div className='space-y-4'>
-                                 <Selector placeholder='Marca' options={BRAND} className='w-full' />
-                                 <PriceSelector />
+                                 <div className='flex gap-4'>
+                                    <Selector placeholder='Marca' options={BRAND} className='w-full' />
+                                    <Selector placeholder='Tipo de producto' options={BRAND} className='w-full' />
+                                 </div>
+                                 <div className='flex justify-center'>
+                                    <div className='w-1/2'>
+                                       <SizeTabel productSize={SIZES} />
+                                    </div>
+                                 </div>
                               </div>
                            </CardContent>
                         </Card>
                      </TabsContent>
                      <TabsContent value="advance">
                         <Card>
-                           <FormField
-                              control={form.control}
-                              name="price"
-                              render={({ field }) => (
-                                 <FormItem>
-                                    <FormLabel>Price</FormLabel>
-                                    <FormControl>
-                                       <Input type="number" placeholder="Enter product price" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                 </FormItem>
-                              )}
-                           />
+                           <CardHeader>
+                              <CardTitle>Detalhes</CardTitle>
+                              <Separator />
+                           </CardHeader>
+                           <CardContent className='space-y-5'>
 
-                           <FormField
-                              control={form.control}
-                              name="priceDiscount"
-                              render={({ field }) => (
-                                 <FormItem>
-                                    <FormLabel>Discount Price</FormLabel>
-                                    <FormControl>
-                                       <Input type="number" placeholder="Enter discount price" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                 </FormItem>
-                              )}
-                           />
+                              <FormField
+                                 control={form.control}
+                                 name="price"
+                                 render={({ field }) => (
+                                    <FormItem>
+                                       <FormLabel>Price</FormLabel>
+                                       <FormControl>
+                                          <Input type="number" placeholder="Enter product price" {...field} />
+                                       </FormControl>
+                                       <FormMessage />
+                                    </FormItem>
+                                 )}
+                              />
+                              <div className='flex items-center justify-between'>
+                                 <div className="flex items-center space-x-2">
+                                    <Checkbox id="terms" checked={enableCupon}
+                                       onClick={() => setEnableCupon((prev) => !prev)} />
+                                    <label
+                                       htmlFor="terms"
+                                       className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                    >
+                                       Adicionar cupão de desconto
+                                    </label>
+                                 </div>
+                                 <Selector placeholder='Codigo do pupão' name='cupun' options={GENDER} disabled={!enableCupon} className={`w-full ${enableCupon ? 'cursor-pointer' : 'cursor-not-allowed'}`} />
+                              </div>
+                              <FormField
+                                 control={form.control}
+                                 name="priceDiscount"
+                                 render={({ field }) => (
+                                    <FormItem>
+                                       <FormLabel>Discount Price</FormLabel>
+                                       <FormControl>
+                                          <Input type="number" disabled={!enableCupon} placeholder="Enter discount price" {...field} />
+                                       </FormControl>
+                                       <FormMessage />
+                                    </FormItem>
+                                 )}
+                              />
 
-                           <FormField
-                              control={form.control}
-                              name="pricePercentage"
-                              render={({ field }) => (
-                                 <FormItem>
-                                    <FormLabel>Discount Percentage</FormLabel>
-                                    <FormControl>
-                                       <Input type="number" placeholder="Enter discount percentage" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                 </FormItem>
-                              )}
-                           />
+                              <FormField
+                                 control={form.control}
+                                 name="pricePercentage"
+                                 render={({ field }) => (
+                                    <FormItem>
+                                       <FormLabel>Discount Percentage</FormLabel>
+                                       <FormControl>
+                                          <Input type="number" disabled={!enableCupon} placeholder="Enter discount percentage" {...field} />
+                                       </FormControl>
+                                       <FormMessage />
+                                    </FormItem>
+                                 )}
+                              />
+                              <Button type='submit'>Cadastrar</Button>
+                           </CardContent>
                         </Card>
                      </TabsContent>
                   </Tabs>
                </div>
             </div>
-
-            <Button type="submit">Submit</Button>
          </form>
       </Form>
    )
 }
 const ModalButton = () => {
    return (
-      <div className="flex items-center justify-between rounded-md shadow-md p-3 text-black w-full">
-         <Image src='/shoe-icon.png' width={30} height={30} alt="shoe icon" />
-         <p>Images de previsualização</p>
+      <div className='relative rounded-xl p-2 w-28 '>
+         <Image src='/shoe-icon.png' width={80} height={80} alt='shoe image' />
+         <div className='absolute bg-[#0000006e] rounded-xl flex items-center justify-center text-white inset-0'>
+            <Plus width={50} />
+         </div>
       </div>
    )
 }
+
 export default CreateProduct

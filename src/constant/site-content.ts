@@ -324,3 +324,14 @@ export const OVERVIEWS = [
     icon: React.createElement(ArrowUpDown),
   },
 ];
+export const COLORES = [
+  '#fff',
+  '#000',
+  '#1809e8',
+  '#e86609',
+  '#fce90f',
+  '#11f505',
+  '#f70fec',
+  '#f70f17',
+  '#dbd0d1',
+];

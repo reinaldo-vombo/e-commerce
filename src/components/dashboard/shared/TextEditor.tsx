@@ -19,7 +19,7 @@ const TextEditor = () => {
       <FroalaEditorComponent
          tag='textarea'
          config={{
-            heightMin: 400
+            heightMin: 300
          }}
          onModelChange={handleModelChange} />
    )
