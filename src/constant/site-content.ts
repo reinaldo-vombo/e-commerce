@@ -238,19 +238,23 @@ export const CATEGORY = [
   { id: '2', image: '/womens.jpg', url: 'womens', title: 'Mulheres' },
   { id: '3', image: '/kids.jpg', url: 'kids', title: 'Crianças' },
 ];
-export const GENDER = ['Homem', 'Mulher', 'Unisex'];
+export const GENDER = [
+  { id: 1, name: 'Homem', value: 'Homem' },
+  { id: 2, name: 'Mulher', value: 'Mulher' },
+  { id: 3, name: 'Unisex', value: 'Unisex' },
+];
 export const CATEGORIES = [
-  'Stilo de vida',
-  'Corrida',
-  'Football',
-  'Basketball',
-  'Treino & GYM',
+  { id: 1, name: 'Stilo de vida', value: 'Stilo de vida' },
+  { id: 2, name: 'Corrida', value: 'Corrida' },
+  { id: 3, name: 'Football', value: 'Football' },
+  { id: 4, name: 'Basketball', value: 'Basketball' },
+  { id: 5, name: 'Treino & GYM', value: 'Treino & GYM' },
 ];
 export const SUB_CATEGORY = [
-  'Novos',
-  'Mais vendidos',
-  'Preços baixos',
-  'Preços altos',
+  { id: 1, name: 'Novos', value: 'Novos' },
+  { id: 2, name: 'Mais vendidos', value: 'Mais vendidos' },
+  { id: 3, name: 'Preços baixos', value: 'Preços baixos' },
+  { id: 4, name: 'Preços altos', value: 'Preços altos' },
 ];
 export const BRANDS = [
   {
@@ -274,12 +278,18 @@ export const BRANDS = [
     logo: React.createElement(PumaLogo, { width: 40, height: 40 }),
   },
   {
-    id: '4',
+    id: '5',
     value: 'Nd',
     logo: React.createElement(NDLogo, { width: 40, height: 40 }),
   },
 ];
-export const BRAND = ['Nike', 'Converse', 'Adidas', 'Puma', 'Nd'];
+export const BRAND = [
+  { id: 1, name: 'Nike', value: 'Nike' },
+  { id: 2, name: 'Converse', value: 'Converse' },
+  { id: 3, name: 'Adidas', value: 'Adidas' },
+  { id: 4, name: 'Puma', value: 'Puma' },
+  { id: 5, name: 'Nd', value: 'Nd' },
+];
 export const SOCIAL_MEDIA = [
   { id: '1', logo: '/facebook.png', url: '#' },
   { id: '2', logo: '/x.png', url: '#' },
@@ -291,8 +301,8 @@ export const SIZES = [
 ];
 export const FEEDBACKS = [
   { id: '1', replay: 'Oh this is rally nice shoe', stars: 4 },
-  { id: '1', replay: 'Oh this is rally nice shoe', stars: 5 },
-  { id: '1', replay: 'Oh this is rally nice shoe', stars: 3 },
+  { id: '2', replay: 'Oh this is rally nice shoe', stars: 5 },
+  { id: '3', replay: 'Oh this is rally nice shoe', stars: 3 },
 ];
 export const OVERVIEWS = [
   {
@@ -325,13 +335,18 @@ export const OVERVIEWS = [
   },
 ];
 export const COLORES = [
-  '#fff',
-  '#000',
-  '#1809e8',
-  '#e86609',
-  '#fce90f',
-  '#11f505',
-  '#f70fec',
-  '#f70f17',
-  '#dbd0d1',
+  { id: 1, value: '#fff', name: 'Branco' },
+  { id: 2, value: '#000', name: 'Preto' },
+  { id: 3, value: '#1809e8', name: 'Azul' },
+  { id: 4, value: '#e86609', name: 'Laranja' },
+  { id: 5, value: '#fce90f', name: 'Amarelo' },
+  { id: 6, value: '#11f505', name: 'Verde' },
+  { id: 7, value: '#f70fec', name: 'Lilas' },
+  { id: 8, value: '#f70f17', name: 'Vermelho' },
+  { id: 9, value: '#dbd0d1', name: 'Zinsa' },
+];
+export const PRODUCT_TYPE = [
+  { id: 1, value: 'Sapatos', name: 'Sapatos' },
+  { id: 2, value: 'Tshite', name: 'Tshite' },
+  { id: 3, value: 'Calças', name: 'Calças' },
 ];

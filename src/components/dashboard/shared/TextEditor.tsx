@@ -1,27 +1,43 @@
 'use client'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import 'froala-editor/css/froala_style.min.css';
 import 'froala-editor/css/froala_editor.pkgd.min.css';
 import dynamic from 'next/dynamic';
+import { ControllerRenderProps } from 'react-hook-form';
+import { AnyNsRecord } from 'dns';
+
 const FroalaEditorComponent = dynamic(
    () => import('react-froala-wysiwyg'),
    { ssr: false }
 );
+type TEditorProps = {
+   formField?: any
+}
 
-const TextEditor = () => {
-   const [model, setModel] = useState("Example Set");
+const TextEditor = ({ formField }: TEditorProps) => {
 
-   const handleModelChange = (event: any) => {
-      setModel(event)
+   const [model, setModel] = useState('');
+   const handleChange = (value: string) => {
+      setModel(value)
+      formField.onChange(value)
    }
 
    return (
       <FroalaEditorComponent
          tag='textarea'
          config={{
-            heightMin: 300
+            PlaceholderText: "Escreva algo",
+            heightMin: 200,
+            events: {
+               // contentChanged: function () {
+               //    const text = this.html.get()
+               //    console.log(text);
+
+               // }
+            }
          }}
-         onModelChange={handleModelChange} />
+         model={model}
+         onModelChange={handleChange} />
    )
 }
 

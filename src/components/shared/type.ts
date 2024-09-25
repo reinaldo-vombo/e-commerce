@@ -8,9 +8,14 @@ export type TPoolTip = {
 export type TSelect = {
   placeholder: string;
   className?: string;
-  options: string[];
-  name?: string;
+  options: {
+    id: number;
+    name: string;
+    value: string;
+  }[];
   disabled?: boolean;
+  onValueChange?: (value: string) => void;
+  value?: any;
 };
 export type SheetProps = {
   children: ReactNode;
@@ -35,14 +40,8 @@ export type TProductPrevie = {
   }[];
 };
 export type TFileUploder = {
+  formField: any;
   maxFiles?: number;
   color?: string;
   size?: 'small' | 'medium' | 'large';
-  setPreview: React.Dispatch<
-    React.SetStateAction<
-      (File & {
-        preview: string;
-      })[]
-    >
-  >;
 };

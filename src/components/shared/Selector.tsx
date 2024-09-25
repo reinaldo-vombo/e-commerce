@@ -7,18 +7,15 @@ import {
 } from "@/components/ui/select"
 import { TSelect } from "./type"
 
-const Selector = ({ options, placeholder, className, name, disabled }: TSelect) => {
+const Selector = ({ options, placeholder, className, disabled, onValueChange, value }: TSelect) => {
    return (
-      <Select disabled={disabled}>
+      <Select name="category" value={value} disabled={disabled} onValueChange={onValueChange}>
          <SelectTrigger className={`${className ? className : 'w-[180px]'}`}>
             <SelectValue placeholder={placeholder} />
          </SelectTrigger>
          <SelectContent>
-            {options.map((item, i) => (
-               <>
-                  <input type="hidden" name={name} value={item} />
-                  <SelectItem value={item} key={i}>{item}</SelectItem>
-               </>
+            {options.map((item,) => (
+               <SelectItem value={item.value} key={item.id}>{item.name}</SelectItem>
             ))}
          </SelectContent>
       </Select>

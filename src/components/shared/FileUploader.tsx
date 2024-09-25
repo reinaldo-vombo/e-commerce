@@ -10,16 +10,20 @@ import { Button } from '../ui/button';
 interface CustomFile extends File {
    path?: string;
 }
-const FileUploader = ({ maxFiles = 1, size = 'large', setPreview }: TFileUploder) => {
+const FileUploader = ({ maxFiles = 1, size = 'large', formField }: TFileUploder) => {
 
    const [files, setFiles] = useState<(File & { preview: string })[]>([]);
+
    const onDrop = useCallback((acceptedFiles: DropzoneRootProps) => {
-      setFiles(acceptedFiles.map((file: File) => Object.assign(file, {
+      const newFiles = (acceptedFiles.map((file: File) => Object.assign(file, {
          preview: URL.createObjectURL(file),
       })));
+      const updatedFiles = [...files, ...newFiles];
+      setFiles(updatedFiles)
+      formField.onChange(updatedFiles)
 
-   }, [])
-   setPreview(files)
+   }, [formField, files])
+
    const thumbs = files.map(file => {
       const imageSize = files.length > 1 ? 60 : 300;
       return (
