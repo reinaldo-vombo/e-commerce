@@ -10,23 +10,31 @@ import {
    AlertDialogTitle,
    AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
+type TAlertModal = {
+   trigger: any
+   className?: string
+   title?: string
+   description?: string
+   label?: string
+   onSubmit: () => void
+}
 
 
-const AlertModal = () => {
+const AlertModal = ({ trigger, title, description, label, className, onSubmit }: TAlertModal) => {
    return (
       <AlertDialog>
-         <AlertDialogTrigger>Open</AlertDialogTrigger>
+         <AlertDialogTrigger className={className} aria-label={label}>{trigger}</AlertDialogTrigger>
          <AlertDialogContent>
             <AlertDialogHeader>
-               <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+               <AlertDialogTitle>{title ? title : 'Are you absolutely sure?'}</AlertDialogTitle>
                <AlertDialogDescription>
-                  This action cannot be undone. This will permanently delete your account
-                  and remove your data from our servers.
+                  {description ? description :
+                     'This action cannot be undone. This will permanently delete your account and remove your data from our servers.'}
                </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
                <AlertDialogCancel>Cancel</AlertDialogCancel>
-               <AlertDialogAction>Continue</AlertDialogAction>
+               <AlertDialogAction onClick={onSubmit}>Continue</AlertDialogAction>
             </AlertDialogFooter>
          </AlertDialogContent>
       </AlertDialog>

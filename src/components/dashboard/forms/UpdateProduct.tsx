@@ -32,7 +32,7 @@ import { toast } from 'sonner'
 import { Toggle } from '@/components/ui/toggle'
 import { ScrollArea } from '@/components/ui/scroll-area'
 
-const CreateProduct = () => {
+const UpdateProduct = () => {
    const [enableCupon, setEnableCupon] = useState(false)
    function onSubmit(value: z.infer<typeof productSchema>) {
       console.log(value)
@@ -58,7 +58,6 @@ const CreateProduct = () => {
          pricePercentage: 0
       },
    })
-
    const { control } = form;
    const { fields, append, remove } = useFieldArray({
       control,
@@ -411,5 +410,5 @@ const ModalButton = () => {
       </div>
    )
 }
+export default UpdateProduct
 
-export default CreateProduct

@@ -6,6 +6,8 @@ import { useDropzone, DropzoneRootProps } from 'react-dropzone'
 import { TFileUploder } from './type';
 import { Images, X } from 'lucide-react';
 import { Button } from '../ui/button';
+import MultipleImage from '../dashboard/file-upload/MultipleImage';
+import SingleImage from '../dashboard/file-upload/SingleImage';
 
 interface CustomFile extends File {
    path?: string;
@@ -23,31 +25,6 @@ const FileUploader = ({ maxFiles = 1, size = 'large', formField }: TFileUploder)
       formField.onChange(updatedFiles)
 
    }, [formField, files])
-
-   const thumbs = files.map(file => {
-      const imageSize = files.length > 1 ? 60 : 300;
-      return (
-         <motion.div className={`inline-flex rounded-md outline-1 outline-[#eaeaea] mb-2 mr-2`}
-            key={file.name}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.3 }}>
-            <div className={`${maxFiles > 1 ? 'outline outline-slate-200 p-2 w-full rounded-lg flex items-center justify-between ' : 'flex min-w-0'} overflow-hidden relative`}>
-               <Image
-                  src={file.preview}
-                  className='rounded-lg'
-                  width={imageSize}
-                  height={imageSize}
-                  alt={file.name}
-                  onLoad={() => { URL.revokeObjectURL(file.preview) }}
-               />
-               <Button className={`${maxFiles > 1 ? '' : 'absolute top-2 right-2 rounded-full'} size-8 text-white bg-red-500 rounded-md `} onClick={() => setFiles((prev) => prev.filter(f => f.name !== file.name))}>
-                  <X /> X
-               </Button>
-            </div>
-         </motion.div>
-      )
-   });
 
    useEffect(() => {
       // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
@@ -80,7 +57,7 @@ const FileUploader = ({ maxFiles = 1, size = 'large', formField }: TFileUploder)
    ));
    return (
       <>
-         <div className='rounded-lg border-2 cursor-pointer border-black border-dashed p-4 shadow-md space-y-3' {...getRootProps()}>
+         <div className='rounded-lg border-2 cursor-pointer border-black border-dashed p-4 pace-y-3' {...getRootProps()}>
             <input {...getInputProps()} />
             <div className='flex items-center justify-center'>
                <Images width={50} />
@@ -102,7 +79,17 @@ const FileUploader = ({ maxFiles = 1, size = 'large', formField }: TFileUploder)
             </div>
          </div>
          <aside className={`${maxFiles > 1 ? 'flex justify-center flex-col gap-3' : 'flex items-center flex-wrap'}`}>
-            {thumbs}
+            {files.length > 0 && (
+               <motion.div
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3 }}
+               >
+                  <MultipleImage setFiles={setFiles} files={files} />
+               </motion.div>
+            )}
+            {maxFiles === 1 && files.length > 0 && <SingleImage setFiles={setFiles} file={files[0]} />}
          </aside>
       </>
    )

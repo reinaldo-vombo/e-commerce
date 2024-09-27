@@ -21,6 +21,7 @@ export type SheetProps = {
   children: ReactNode;
   side: 'top' | 'bottom' | 'left' | 'right';
   trigger: any;
+  label?: string;
 };
 export type TCarousel = {
   chlidren: ReactNode;

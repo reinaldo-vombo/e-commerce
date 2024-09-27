@@ -1,16 +1,17 @@
-import Selector from '@/components/shared/Selector'
+
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import Image from 'next/image'
+import Selector from '../shared/Selector'
 
 const PRODUCT_STATE = [
    { id: 1, name: 'Publicado', value: 'Publicado' },
    { id: 2, name: 'Não Publicado', value: 'Não Publicado' },
 ]
 
-const ImagePreview = () => {
+const ImagePreview = ({ formField }: any) => {
    return (
-      <div className='grid gap-4 col-span-4 h-[21rem] sticky top-0'>
+      <div className='grid gap-4'>
          <Card>
             <CardHeader>
                <CardTitle>Thumbnail</CardTitle>
@@ -23,12 +24,12 @@ const ImagePreview = () => {
          <Card className='h-[15rem]'>
             <CardHeader>
                <CardTitle className='flex items-center justify-between'>Stado
-                  <span className={`size-6 rounded-full bg-green-500`} />
+                  <span className={`size-6 rounded-full ${formField.value === 'Publicado' ? 'bg-green-500' : 'bg-red-500'}`} />
                </CardTitle>
             </CardHeader>
             <Separator />
             <CardContent>
-               <Selector placeholder='Stado' options={PRODUCT_STATE} className='w-full' />
+               <Selector placeholder='Stado' options={PRODUCT_STATE} formField={formField} className='w-full' />
             </CardContent>
          </Card>
       </div>

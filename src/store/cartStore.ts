@@ -10,32 +10,43 @@ interface CartState {
   removeFromCart: (id: string) => void;
   clearCart: () => void;
 }
+const loadCartFromLocalStorage = (): CartItem[] => {
+  const savedCart = localStorage.getItem('cart');
+  return savedCart ? JSON.parse(savedCart) : [];
+};
 
+// Save cart to local storage
+const saveCartToLocalStorage = (cart: CartItem[]) => {
+  localStorage.setItem('cart', JSON.stringify(cart));
+};
 export const useCartStore = create<CartState>((set) => ({
-  cart: [],
+  cart: loadCartFromLocalStorage(), // Initialize cart from local storage
   addToCart: (product) =>
     set((state) => {
       const existingItem = state.cart.find((item) => item.id === product.id);
       if (existingItem) {
-        return {
-          cart: state.cart.map((item) =>
-            item.id === product.id
-              ? { ...item, quantity: item.quantity + 1 }
-              : item
-          ),
-        };
+        const updatedCart = state.cart.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+        saveCartToLocalStorage(updatedCart); // Save updated cart
+        return { cart: updatedCart };
       }
-      toast.message(`${product.title}`, {
-        description: 'Foi adicionado ao carrinho',
-      });
-      return { cart: [...state.cart, { ...product, quantity: 1 }] };
+      toast.success(`${product.title} foi adicionado ao carrinho`);
+      const newCart = [...state.cart, { ...product, quantity: 1 }];
+      saveCartToLocalStorage(newCart); // Save new cart
+      return { cart: newCart };
     }),
   removeFromCart: (id) =>
     set((state) => {
       toast.success(`Item removido do carrinho`);
-      return {
-        cart: state.cart.filter((item) => item.id !== id),
-      };
+      const updatedCart = state.cart.filter((item) => item.id !== id);
+      saveCartToLocalStorage(updatedCart); // Save updated cart
+      return { cart: updatedCart };
     }),
-  clearCart: () => set({ cart: [] }),
+  clearCart: () => {
+    set({ cart: [] });
+    localStorage.removeItem('cart'); // Clear local storage
+  },
 }));

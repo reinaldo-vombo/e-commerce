@@ -9,34 +9,43 @@ import {
 import { Icons } from "@/constant/icons"
 import { Logo } from "@/constant/svgIcons"
 import { Input } from "./ui/input"
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { PRODUCTS } from "@/constant/site-content"
-import { TProduct } from "./types"
 import Image from "next/image"
+import { TProduct } from "./product/type"
+import { useSearchParams, usePathname, useRouter } from 'next/navigation';
+import { useDebouncedCallback } from 'use-debounce';
 
 const POPULAR_SEACH = ['Nike Air Max Plus', 'Patta Chuck 70 Marquis Hi', 'Air MAx', 'Blazer']
 const SearchDropdow = () => {
-   const [searchTerm, setSearchTerm] = useState('');
+   const searchParams = useSearchParams();
+   const pathname = usePathname();
+   const { replace } = useRouter();
    const [filteredProducts, setFilteredProducts] = useState<TProduct[] | []>([]);
+   const query = searchParams.get('query')?.toString() || '';
 
-   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const searchTerm = e.target.value;
-      setSearchTerm(searchTerm)
-
-      const filteredItems = PRODUCTS.filter((item) =>
-         item.title.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-      if (searchTerm === '') {
-         setFilteredProducts([])
+   // Update filtered products whenever the query changes
+   useEffect(() => {
+      if (query) {
+         const filtered = PRODUCTS.filter(product =>
+            product.title.toLowerCase().includes(query.toLowerCase())
+         );
+         setFilteredProducts(filtered);
       } else {
-         setFilteredProducts(filteredItems);
+         setFilteredProducts([]); // Reset to original products if no query
       }
+   }, [query]);
 
-   }
-   const slectePopularSearch = (search: string) => {
-      setSearchTerm(search)
-   }
+   const handleSearch = useDebouncedCallback((term) => {
 
+      const params = new URLSearchParams(searchParams);
+      if (term) {
+         params.set('query', term);
+      } else {
+         params.delete('query');
+      }
+      replace(`${pathname}?${params.toString()}`);
+   }, 300);
    return (
       <Sheet>
          <SheetTrigger>
@@ -51,8 +60,10 @@ const SearchDropdow = () => {
                   <div className="col-span-9 space-y-6">
                      <div className="relative">
                         <Input
-                           value={searchTerm}
-                           onChange={handleInputChange}
+                           onChange={(e) => {
+                              handleSearch(e.target.value);
+                           }}
+                           defaultValue={searchParams.get('query')?.toString()}
                            className="px-10 bg-gray-200" placeholder="Pesquisar" />
                         <Icons.search width={25} className="absolute top-[6px] left-3" />
                      </div>
@@ -77,7 +88,7 @@ const SearchDropdow = () => {
                               <h3>Termor de pesquisa populares</h3>
                               <ul className="grid gap-4">
                                  {POPULAR_SEACH.map((item, index) => (
-                                    <li className="text-[1.5rem] cursor-pointer leading-[140%] tracking-tighter" key={index} onClick={() => slectePopularSearch(item)}>
+                                    <li className="text-[1.5rem] cursor-pointer leading-[140%] tracking-tighter" key={index}>
                                        {item}
                                     </li>
                                  ))}

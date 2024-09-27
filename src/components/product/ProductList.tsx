@@ -12,11 +12,14 @@ import Image from 'next/image';
 import { toast } from 'sonner';
 import Link from 'next/link';
 import { useCartStore } from '@/store/cartStore';
+import { useWishlistStore } from '@/store/wishListStore';
+import { PRODUCTS } from '@/constant/site-content';
 
 const ProductList = ({ props }: TProductProps) => {
-   const addToCart = useCartStore((state) => state.addToCart);
-   const [hoverd, setHoved] = useState(false)
    const { title, description, image, brand, price, id } = props
+   const addToCart = useCartStore((state) => state.addToCart);
+   const { addToWishlist } = useWishlistStore();
+   const [hoverd, setHoved] = useState(false)
 
    const getProductBrand = () => {
       switch (brand) {
@@ -27,9 +30,6 @@ const ProductList = ({ props }: TProductProps) => {
          default:
             return null;
       }
-   }
-   const addToFavorite = () => {
-      toast.success('Item adicionado a lista de favoritos')
    }
    return (
       <div className='col-span-4'>
@@ -62,7 +62,7 @@ const ProductList = ({ props }: TProductProps) => {
                   <Button className='w-full rounded-xl bg-slate-200 text-black'>Adicionar ao carrinho</Button>
                </motion.div>
             </div>
-            <motion.button whileTap={{ scale: 0.5 }} className='absolute top-5 right-5' onClick={addToFavorite}>
+            <motion.button whileTap={{ scale: 0.5 }} className='absolute top-5 right-5' onClick={() => addToWishlist({ id, title, image })}>
                <Icons.heart width={30} />
             </motion.button>
          </CardBody>

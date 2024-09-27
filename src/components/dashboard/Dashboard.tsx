@@ -14,93 +14,93 @@ type TDashbord = {
    children: ReactNode
 }
 
+const links = [
+   {
+      label: "Dashboard",
+      href: "#",
+      icon: (
+         <Home className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+      ),
+   },
+   {
+      label: "Produtos",
+      href: "product",
+      icon: (
+         <ShoppingBag className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+      ),
+   },
+   {
+      label: "Encomendas",
+      href: "#",
+      icon: (
+         <BookCheck className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+      ),
+   },
+   {
+      label: "Devoluções",
+      href: "#",
+      icon: (
+         <ArrowUpDown className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+      ),
+   },
+   {
+      label: "Pagamentos",
+      href: "#",
+      icon: (
+         <CreditCard className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+      ),
+   },
+   {
+      label: "Loja",
+      href: "#",
+      icon: (
+         <Store className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+      ),
+   },
+   {
+      label: "Campanha",
+      href: "#",
+      icon: (
+         <Megaphone className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+      ),
+   },
+   {
+      label: "Blog",
+      href: "#",
+      icon: (
+         <Images className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+      ),
+   },
+   {
+      label: "Gerenciar úsuarios",
+      href: "#",
+      icon: (
+         <User className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+      ),
+   },
+   {
+      label: "Feedback",
+      href: "#",
+      icon: (
+         <MessageSquare className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+      ),
+   },
+   {
+      label: "Definições",
+      href: "#",
+      icon: (
+         <Settings className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+      ),
+   },
+   {
+      label: "Sair",
+      href: "#",
+      icon: (
+         <ArrowLeft className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+      ),
+   },
+];
 export function Dasboard({ children }: TDashbord) {
-   const links = [
-      {
-         label: "Dashboard",
-         href: "#",
-         icon: (
-            <Home className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
-         ),
-      },
-      {
-         label: "Produtos",
-         href: "product",
-         icon: (
-            <ShoppingBag className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
-         ),
-      },
-      {
-         label: "Encomendas",
-         href: "#",
-         icon: (
-            <BookCheck className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
-         ),
-      },
-      {
-         label: "Devoluções",
-         href: "#",
-         icon: (
-            <ArrowUpDown className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
-         ),
-      },
-      {
-         label: "Pagamentos",
-         href: "#",
-         icon: (
-            <CreditCard className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
-         ),
-      },
-      {
-         label: "Loja",
-         href: "#",
-         icon: (
-            <Store className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
-         ),
-      },
-      {
-         label: "Campanha",
-         href: "#",
-         icon: (
-            <Megaphone className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
-         ),
-      },
-      {
-         label: "Blog",
-         href: "#",
-         icon: (
-            <Images className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
-         ),
-      },
-      {
-         label: "Gerenciar úsuarios",
-         href: "#",
-         icon: (
-            <User className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
-         ),
-      },
-      {
-         label: "Feedback",
-         href: "#",
-         icon: (
-            <MessageSquare className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
-         ),
-      },
-      {
-         label: "Definições",
-         href: "#",
-         icon: (
-            <Settings className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
-         ),
-      },
-      {
-         label: "Sair",
-         href: "#",
-         icon: (
-            <ArrowLeft className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
-         ),
-      },
-   ];
    const [open, setOpen] = useState(false);
    return (
       <div
@@ -141,7 +141,7 @@ export function Dasboard({ children }: TDashbord) {
          <div className="w-full overflow-y-auto">
             <NavBar />
             <Separator />
-            <main className="text-white px-6">
+            <main className="p-6">
                {children}
             </main>
          </div>

@@ -20,6 +20,7 @@ export const productSchema = z.object({
   gender: z.string().min(1, {
     message: 'Selecione uma género',
   }),
+  status: z.string().optional(),
   image: z.array(z.instanceof(File)).nonempty({
     message: 'Deve carregar uma imagem',
   }),
