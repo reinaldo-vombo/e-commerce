@@ -18,9 +18,6 @@ const BlogNav = () => {
                      <li key={i}>{item}</li>
                   ))}
                </ul>
-               <div>
-                  <Selector options={LANGUAGES} placeholder='Linguagem' className='w-28 border-none bg-black' />
-               </div>
             </div>
          </div>
       </nav>

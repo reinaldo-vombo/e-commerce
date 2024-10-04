@@ -1,8 +1,9 @@
+import UpdateProduct from '@/components/dashboard/forms/UpdateProduct'
 import { MoveLeft } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 
-export default function UpdateProduct() {
+export default function UpdateProductPage() {
    return (
       <section>
          <div className='text-left mb-8'>

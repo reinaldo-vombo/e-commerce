@@ -39,11 +39,6 @@ const FileUploader = ({ maxFiles = 1, size = 'large', formField }: TFileUploder)
             'image/png': []
          }
       })
-   const acceptedFileItems = acceptedFiles.map((file: CustomFile) => (
-      <li key={file.path}>
-         {file.path} - {file.size} bytes
-      </li>
-   ));
 
    const fileRejectionItems = fileRejections.map(({ file, errors }: { file: CustomFile, errors: any[] }) => (
       <li key={file.path}>

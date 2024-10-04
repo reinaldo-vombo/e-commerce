@@ -4,7 +4,6 @@ import { Icons } from "@/constant/icons"
 import Link from "next/link"
 import ListItem from "../cart/ListItem"
 import Breadcrumbe from "../shared/Breadcrumbe"
-import PaymentSidebar from "../cart/PaymentSidebar"
 import { useState } from "react"
 import { useCartStore } from "@/store/cartStore"
 
@@ -14,7 +13,7 @@ const CartPage = () => {
    const getInitialTotalPrice = () => {
       return cart.reduce((total, product) => total + product.price, 0);
    };
-   const [totalPrice, setTotalPrice] = useState(getInitialTotalPrice());
+   const [totalPrice, setTotalPrice] = useState(getInitialTotalPrice);
 
    const handlePriceChange = (newPrice: number, productId: string) => {
       setProducts((prevProducts) =>

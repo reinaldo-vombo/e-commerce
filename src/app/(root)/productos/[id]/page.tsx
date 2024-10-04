@@ -1,13 +1,11 @@
 
 import SigleProduct from "@/components/layout/SigleProduct";
-import Breadcrumbe from "@/components/shared/Breadcrumbe";
-import ProductPreview from "@/components/shared/ProductPreview";
 import { PRODUCTS } from "@/constant/site-content";
-type TSeachParams = {
+type TSearchParams = {
    params: { id: string }
-   seachParams: { [key: string]: string | string[] | undefined }
+   searchParams?: { [key: string]: string | string[] | undefined }
 }
-export default function page({ params }: TSeachParams) {
+export default function page({ params }: TSearchParams) {
    const id = params.id
    const product = PRODUCTS.find((product) => product.id === id)
 

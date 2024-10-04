@@ -62,11 +62,11 @@ export default function AvatarList({
                <div className="relative overflow-hidden rounded-full bg-white">
                   <div className="bg-size pointer-events-none absolute h-full w-full animate-bg-position from-violet-500 from-30% via-cyan-400 via-50% to-pink-500 to-80% bg-[length:300%_auto] opacity-15 group-hover:bg-gradient-to-r" />
                   <div className="z-1 blur-lg" />
-                  <img
+                  {/* <img
                      src={item.image}
                      alt={item.name}
                      className={cn("rounded-full object-cover", sizes[size] ?? sizes.md)}
-                  />
+                  /> */}
                </div>
                <div className="absolute bottom-full left-1/2 -translate-x-1/2 translate-y-2 transform whitespace-nowrap rounded bg-slate-900 p-2 text-white opacity-0 transition-all duration-300 ease-in-out group-hover:-translate-y-2 group-hover:opacity-100 dark:bg-slate-100 dark:text-slate-900">
                   <div className="text-sm font-semibold">{item.name}</div>

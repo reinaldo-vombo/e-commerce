@@ -41,7 +41,7 @@ export type TProductPrevie = {
   }[];
 };
 export type TFileUploder = {
-  formField: any;
+  formField?: any;
   maxFiles?: number;
   color?: string;
   size?: 'small' | 'medium' | 'large';
