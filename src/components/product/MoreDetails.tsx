@@ -9,6 +9,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { TProductModal } from './type'
 import Options from './Options'
+import { Button } from '../ui/button'
 
 const MoreDetails = ({ title, image, price }: TProductModal) => {
    const [itemsCount, setItemsCount] = useState(1)
@@ -49,6 +50,7 @@ const MoreDetails = ({ title, image, price }: TProductModal) => {
                      <b>Instruções de cuidado:</b>
                      <span>Maquina de lavar</span>
                   </div>
+                  <Button className="w-full">Adicionar ao carrinho</Button>
                </div>
             </div>
             <div className='col-span-4 flex flex-col justify-center items-center space-y-4'>

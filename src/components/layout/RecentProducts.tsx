@@ -11,7 +11,7 @@ const RecentProducts = () => {
         <div>
           <Image src={'/sportbanner.jpg'} className="rounded-md w-full" width={1247} height={433} alt="sport banner image" />
         </div>
-        <ProductHeader />
+        <ProductHeader quey="recent" title="Productos Recentes" />
         <ProductCarousel />
         <div className="grid grid-cols-12 gap-4">
           <div className="col-span-4 flex flex-col justify-center p-12">

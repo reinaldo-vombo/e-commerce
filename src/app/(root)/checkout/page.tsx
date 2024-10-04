@@ -17,31 +17,31 @@ export default function CheckoutPage() {
                <div>
                   <Card>
                      <CardHeader>
-                        <CardTitle>Shipping Information</CardTitle>
-                        <CardDescription>Enter your shipping details</CardDescription>
+                        <CardTitle>Informações De Envio</CardTitle>
+                        <CardDescription>Insira Seus Detalhes De Envio</CardDescription>
                      </CardHeader>
                      <CardContent className="space-y-4">
                         <div className="grid grid-cols-2 gap-4">
                            <div className="space-y-2">
-                              <Label htmlFor="first-name">First name</Label>
+                              <Label htmlFor="first-name">Primero Nome</Label>
                               <Input id="first-name" placeholder="John" />
                            </div>
                            <div className="space-y-2">
-                              <Label htmlFor="last-name">Last name</Label>
+                              <Label htmlFor="last-name">Ùltimo Nome</Label>
                               <Input id="last-name" placeholder="Doe" />
                            </div>
                         </div>
                         <div className="space-y-2">
-                           <Label htmlFor="address">Address</Label>
+                           <Label htmlFor="address">Endereço</Label>
                            <Input id="address" placeholder="123 Main St" />
                         </div>
                         <div className="grid grid-cols-3 gap-4">
                            <div className="space-y-2">
-                              <Label htmlFor="city">City</Label>
+                              <Label htmlFor="city">Cidade</Label>
                               <Input id="city" placeholder="New York" />
                            </div>
                            <div className="space-y-2">
-                              <Label htmlFor="state">State</Label>
+                              <Label htmlFor="state">Stado</Label>
                               <Select>
                                  <SelectTrigger id="state">
                                     <SelectValue placeholder="Select" />
@@ -65,8 +65,8 @@ export default function CheckoutPage() {
                <div>
                   <Card>
                      <CardHeader>
-                        <CardTitle>Order Summary</CardTitle>
-                        <CardDescription>Review your order details</CardDescription>
+                        <CardTitle>Resumo do pedido</CardTitle>
+                        <CardDescription>Revise os detalhes do seu pedido</CardDescription>
                      </CardHeader>
                      <CardContent className="space-y-4">
                         <div className="flex justify-between">
@@ -74,11 +74,11 @@ export default function CheckoutPage() {
                            <span>$99.99</span>
                         </div>
                         <div className="flex justify-between">
-                           <span>Shipping</span>
+                           <span>Envio</span>
                            <span>$9.99</span>
                         </div>
                         <div className="flex justify-between">
-                           <span>Tax</span>
+                           <span>Imposto</span>
                            <span>$10.00</span>
                         </div>
                         <Separator />
@@ -88,27 +88,27 @@ export default function CheckoutPage() {
                         </div>
                      </CardContent>
                      <CardFooter>
-                        <Button className="w-full">Place Order</Button>
+                        <Button className="w-full">Fazer Pedido</Button>
                      </CardFooter>
                   </Card>
                   <Card className="mt-8">
                      <CardHeader>
-                        <CardTitle>Shipping Method</CardTitle>
-                        <CardDescription>Choose your preferred shipping option</CardDescription>
+                        <CardTitle>Método de envio</CardTitle>
+                        <CardDescription>Escolha a opção de envio de sua preferência</CardDescription>
                      </CardHeader>
                      <CardContent>
                         <RadioGroup defaultValue="standard">
                            <div className="flex items-center justify-between">
                               <div className="flex items-center space-x-2">
                                  <RadioGroupItem value="standard" id="standard" />
-                                 <Label htmlFor="standard">Standard Shipping</Label>
+                                 <Label htmlFor="standard">Envio padrão</Label>
                               </div>
                               <span>$9.99</span>
                            </div>
                            <div className="flex items-center justify-between">
                               <div className="flex items-center space-x-2">
                                  <RadioGroupItem value="express" id="express" />
-                                 <Label htmlFor="express">Express Shipping</Label>
+                                 <Label htmlFor="express">Envio Expresso</Label>
                               </div>
                               <span>$19.99</span>
                            </div>

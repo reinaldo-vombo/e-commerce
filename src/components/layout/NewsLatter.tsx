@@ -17,7 +17,7 @@ const NewsLatter = () => {
                <p>Receba novidade sobre artigo e atualizações na tua caixa de entrada</p>
                <div className="flex justify-center mt-6">
                   <div className='w-1/2 flex items-center gap-4'>
-                     <Input type='email' placeholder='Seu email' />
+                     <Input type='email' className='text-black' placeholder='Seu email' />
                      <AnimatedSubscribeButton
                         onClick={handleSubscribe}
                         subscribeStatus={isSubmiting}

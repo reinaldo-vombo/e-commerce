@@ -57,7 +57,7 @@ export const Feedback = ({ stars, setStars }: TFeedbackProps) => {
             clearTimeout(submissionStateTimeout)
          }
       }
-   }, [isSent, setStars])
+   }, [isSent])
 
    return (
       <motion.div

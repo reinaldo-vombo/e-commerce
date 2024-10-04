@@ -2,7 +2,6 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { SHOW_RATING } from "@/lib/motion"
 import CardBody from "../shared/CardBody"
-import confetti from "canvas-confetti";
 import { Feedback } from "../animata/feedback";
 
 const CardRating = () => {
@@ -22,7 +21,7 @@ const CardRating = () => {
             ))}
          </div>
          <motion.div initial={false} variants={SHOW_RATING} animate={ratingMoadal ? 'show' : 'hidden'} className="absolute rounded-lg bg-white shadow-sm z-20 top-5">
-            <CardBody className="space-y-3">
+            <CardBody className="space-y-3 w-96">
                <div className="space-y-4">
                   <p className="font-semibold text-sm">Que pontuação darias a esté item (5/{stars})</p>
                   <Feedback setStars={setStars} stars={stars} />

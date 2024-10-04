@@ -11,13 +11,18 @@ interface CartState {
   clearCart: () => void;
 }
 const loadCartFromLocalStorage = (): CartItem[] => {
-  const savedCart = localStorage.getItem('cart');
-  return savedCart ? JSON.parse(savedCart) : [];
+  if (typeof window !== 'undefined') {
+    const savedCart = localStorage.getItem('cart');
+    return savedCart ? JSON.parse(savedCart) : [];
+  }
+  return [];
 };
 
 // Save cart to local storage
 const saveCartToLocalStorage = (cart: CartItem[]) => {
-  localStorage.setItem('cart', JSON.stringify(cart));
+  if (typeof window !== 'undefined') {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }
 };
 export const useCartStore = create<CartState>((set) => ({
   cart: loadCartFromLocalStorage(), // Initialize cart from local storage

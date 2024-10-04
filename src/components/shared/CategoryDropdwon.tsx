@@ -2,11 +2,14 @@ import React from 'react'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../ui/accordion'
 import { CATEGORIES } from '@/constant/site-content'
 import { FilterOptions } from '@/hooks/type'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 type TFiter = {
-   onChange: (filter: FilterOptions) => void
+   createQueryString: (name: string, value: string) => string;
 }
 
-const CategoryDropdwon = ({ onChange }: TFiter) => {
+const CategoryDropdwon = ({ createQueryString }: TFiter) => {
+   const pathname = usePathname()
    return (
       <Accordion type='multiple'>
          <AccordionItem value='item1'>
@@ -16,10 +19,10 @@ const CategoryDropdwon = ({ onChange }: TFiter) => {
             <AccordionContent>
                <div className='grid gap-3 place-items-start'>
                   {CATEGORIES.map((item) => (
-                     <button className='flex items-center justify-between w-full font-medium' onClick={() => onChange({ category: item })} key={item}>
-                        <span className='text-slate-500'>{item}</span>
+                     <Link href={pathname + '?' + createQueryString('sort', 'desc')} scroll={false} className='flex items-center justify-between w-full font-medium' key={item.id}>
+                        <span className='text-slate-500'>{item.name}</span>
                         <b>8</b>
-                     </button>
+                     </Link>
                   ))}
                </div>
             </AccordionContent>

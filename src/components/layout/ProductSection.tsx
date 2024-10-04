@@ -4,10 +4,11 @@ import ProductHeader from '../product/ProductHeader'
 import ProductCarousel from '../shared/Carousel'
 
 const ProductSection = () => {
+
    return (
       <section className='padding'>
          <div className="container space-y-7">
-            <ProductHeader />
+            <ProductHeader quey='new' title='Novos Productos' />
             <ProductCarousel />
          </div>
       </section>

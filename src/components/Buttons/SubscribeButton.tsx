@@ -23,8 +23,6 @@ export const AnimatedSubscribeButton: React.FC<
    onClick
 }) => {
       const [isSubscribed, setIsSubscribed] = useState<boolean>(subscribeStatus);
-      console.log(subscribeStatus);
-
       return (
          <AnimatePresence mode="wait">
             {subscribeStatus ? (

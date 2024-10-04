@@ -1,69 +1,8 @@
-'use client'
-import { Fragment, useEffect, useState } from "react"
-import { ShiftingDropDown } from "./Dropdwon"
-import { usePathname } from "next/navigation"
-import { Logo, } from "@/constant/svgIcons"
-import { Icons } from "@/constant/icons"
-import SearchDropdow from "../SearchDropdow"
-import CartSidebar from "../cart/Sidebar"
-import TopBar from "./TopBar"
-import Lognin from "../auth/forms/Lognin"
-import Modal from "../shared/Modal"
-import BlogNav from "./BlogNav"
-import Link from "next/link"
-import { PRODUCTS } from "@/constant/site-content"
-import WishList from "../wishList/Sidebar"
-import InfoNav from "./InfoNav"
-
-const HAS_ITEM = PRODUCTS.length
+import Head from "./Head"
 
 const Header = () => {
-   const path = usePathname()
-   const [scrolled, setScrolled] = useState(false);
 
-   useEffect(() => {
-      const handleScroll = () => {
-         setScrolled(window.scrollY > 50); // Change 50 to the scroll threshold you prefer
-      };
-
-      window.addEventListener('scroll', handleScroll);
-
-      return () => {
-         window.removeEventListener('scroll', handleScroll);
-      };
-   }, []);
-
-   return (
-      <header className={`fixed w-full z-30 ${path === '/noticias' ? 'bg-black' : scrolled ? 'bg-white shadow' : `bg-transparent ${path === '/' ? 'text-black' : 'text-white'} `} transition-all ease-in`}>
-         {path === '/noticias' ? <BlogNav /> : path === '/checkout' ? <InfoNav /> : (
-            <Fragment>
-               <TopBar />
-               <div className="container">
-                  <nav className='flex items-center justify-between'>
-                     <div>
-                        <Link href='/'>
-                           <Logo width={60} height={60} />
-                        </Link>
-                     </div>
-                     <div>
-                        <ShiftingDropDown scrolled={scrolled} />
-                     </div>
-                     <div className="flex items-center gap-3">
-                        <SearchDropdow />
-                        <Modal btn={<Icons.user width={25} />} title="Entart" className="hover:bg-slate-200 rounded-full p-2 flex items-center justify-center">
-                           <Lognin />
-                        </Modal>
-                        <Link href='/cart' className="hover:bg-slate-200 rounded-full p-2 flex items-center justify-center">
-                           <Icons.shoppingCart width={25} fill={HAS_ITEM > 0 ? '#000' : 'none'} />
-                        </Link>
-                        <WishList />
-                     </div>
-                  </nav>
-               </div>
-            </Fragment>
-         )}
-      </header>
-   )
+   return <Head />
 }
 
 export default Header

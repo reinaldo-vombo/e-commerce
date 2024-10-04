@@ -12,7 +12,7 @@ import { Input } from '@/components/ui/input'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useFieldArray, useForm } from "react-hook-form"
 import { z } from "zod"
-import { productSchema } from './FormValidation'
+import { productSchema } from '@/lib/FormValidation'
 import TextEditor from '../shared/TextEditor'
 import { BRAND, CATEGORIES, COLORES, GENDER, PRODUCT_TYPE, SIZES } from '@/constant/site-content'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"

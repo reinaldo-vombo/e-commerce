@@ -1,25 +1,31 @@
 'use client'
-import { useState } from 'react'
+import Link from 'next/link';
 import { ConversLogo, NikeLogo } from '@/constant/svgIcons'
 import CardBody from '../shared/CardBody'
+import Image from 'next/image';
 import { TProductProps } from './type';
 import { motion } from 'framer-motion';
-import { HIDE_BUTTON } from '@/lib/motion';
 import { Icons } from '@/constant/icons';
 import MoreDetails from './MoreDetails';
 import { Button } from '../ui/button';
-import Image from 'next/image';
-import { toast } from 'sonner';
-import Link from 'next/link';
 import { useCartStore } from '@/store/cartStore';
 import { useWishlistStore } from '@/store/wishListStore';
-import { PRODUCTS } from '@/constant/site-content';
 
 const ProductList = ({ props }: TProductProps) => {
    const { title, description, image, brand, price, id } = props
    const addToCart = useCartStore((state) => state.addToCart);
-   const { addToWishlist } = useWishlistStore();
-   const [hoverd, setHoved] = useState(false)
+   const { addToWishlist, wishlist, removeFromWishlist } = useWishlistStore();
+
+   const isInWishlist = wishlist.find(item => {
+      return item.id === id
+   })
+   const handleAddToWishlist = () => {
+      if (isInWishlist) {
+         removeFromWishlist(id)
+      } else {
+         addToWishlist({ id, title, image })
+      }
+   }
 
    const getProductBrand = () => {
       switch (brand) {
@@ -36,7 +42,7 @@ const ProductList = ({ props }: TProductProps) => {
          <CardBody className='relative'>
             <Link href={`/productos/${id}`}>
                <div className='relative h-[25rem] w-full'>
-                  <Image src={image} fill alt={title} />
+                  <Image src={image} fill sizes='100%' alt={title} />
                </div>
             </Link>
             <div>
@@ -54,16 +60,9 @@ const ProductList = ({ props }: TProductProps) => {
                   <h3 className='font-semibold'>{price} (kz)</h3>
                </div>
             </div>
-            <div className='flex items-center gap-2 mt-4'>
-               <motion.div className='w-full' onMouseEnter={() => setHoved(true)} onMouseLeave={() => setHoved(false)}>
-                  <Button className='w-full rounded-xl'>Compar</Button>
-               </motion.div>
-               <motion.div variants={HIDE_BUTTON} initial='hidden' animate={hoverd ? 'visible' : 'hidden'} transition={{ duration: 0.3 }} className='w-full' onClick={() => addToCart({ id, title, price, image })}>
-                  <Button className='w-full rounded-xl bg-slate-200 text-black'>Adicionar ao carrinho</Button>
-               </motion.div>
-            </div>
-            <motion.button whileTap={{ scale: 0.5 }} className='absolute top-5 right-5' onClick={() => addToWishlist({ id, title, image })}>
-               <Icons.heart width={30} />
+            <Button className='w-full mt-4 rounded-xl bg-slate-200 text-black transition-colors hover:bg-black hover:text-white' onClick={() => addToCart({ id, title, price, image })}>Adicionar ao carrinho</Button>
+            <motion.button whileTap={{ scale: 0.5 }} className={`${isInWishlist?.id === id ? 'text-red-500' : ''} absolute top-5 right-5`} onClick={handleAddToWishlist}>
+               <Icons.heart width={30} fill={`${isInWishlist?.id === id ? 'red' : 'none'}`} />
             </motion.button>
          </CardBody>
       </div>

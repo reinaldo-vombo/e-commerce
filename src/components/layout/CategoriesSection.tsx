@@ -10,7 +10,7 @@ const CategoriesSection = () => {
             <div className="grid grid-cols-12 gap-4">
                {CATEGORY.map((item) => (
                   <div className="col-span-4 overflow-hidden relative" key={item.id}>
-                     <Link href={`/productos/categoria/${item.url}`}>
+                     <Link href={`/productos/?gender=${item.title}`}>
                         <Image src={item.image} className="rounded-md w-full hover:scale-105 transition-all ease-linear" width={408} height={510} alt={item.title} />
                      </Link>
                      <div className="absolute bottom-3 inset-x-3">

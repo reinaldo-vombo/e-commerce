@@ -9,18 +9,11 @@ import {
 import { Icons } from "@/constant/icons"
 import { useState } from "react"
 import { Button } from "../ui/button"
-import { MasteCardLogo, VisaLogo } from "@/constant/svgIcons"
-import CartForm from "../forms/Cart"
 import Image from "next/image"
-import { Separator } from "../ui/separator"
 import { Input } from "../ui/input"
 import { TPaymentProps } from "./type"
 import { toast } from "sonner"
 
-const PAYMENTS = [
-   { id: '1', name: 'masterCard', logo: <MasteCardLogo width={40} height={40} /> },
-   { id: '2', name: 'visa', logo: <VisaLogo width={40} height={40} /> }
-]
 const user = { avatar: '/avatar.jpg', name: 'Reginalde Baggle' }
 
 const PaymentSidebar = ({ totalPrice }: TPaymentProps) => {
@@ -81,25 +74,6 @@ const PaymentSidebar = ({ totalPrice }: TPaymentProps) => {
                               onChange={(e) => setPromoCode(e.target.value)}
                               placeholder="código promocional" />
                            <Button type="button" onClick={applyPromoCode}>Aplicar</Button>
-                        </div>
-                     </div>
-                     <div className="space-y-7">
-                        <h3 className="base-semibold">Selecione tipo cartão</h3>
-                        <div className="flex items-center justify-center gap-4">
-                           {PAYMENTS.map((type) => (
-                              <button type="button" className={`${paymentType === type.id ? 'outline-slate-300' : 'outline-slate-200'} outline rounded-lg p-2`} aria-label="master card logo" onClick={() => selectePayment(type.id)} key={type.id}>
-                                 {type.logo}
-                              </button>
-                           ))}
-                        </div>
-                        <Separator />
-                        <div>
-                           <ul className="grid gap-5">
-                              <li className="flex justify-between">SubTotal: <b>{discountedPrice.toFixed(2)}</b></li>
-                              <li className="flex justify-between">Custos de envio: <b>Gratis</b></li>
-                              <li className="flex justify-between">Imposto sobre vendas: <b>-</b></li>
-                              <li></li>
-                           </ul>
                         </div>
                      </div>
                   </div>

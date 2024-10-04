@@ -41,8 +41,8 @@ export const HELPER_LINKS = [
   },
   {
     id: 3,
-    name: 'Aderir',
-    route: '#',
+    name: 'Painel',
+    route: '/dashboard',
   },
 ];
 export const HELPE_LINKS = [
@@ -350,4 +350,40 @@ export const PRODUCT_TYPE = [
   { id: 1, value: 'Sapatos', name: 'Sapatos' },
   { id: 2, value: 'Tshite', name: 'Tshite' },
   { id: 3, value: 'Calças', name: 'Calças' },
+];
+export const NAV_ITEMS = [
+  {
+    shoes: [
+      { id: 1, name: 'Todos os tenis', query: '?type=all' },
+      { id: 2, name: 'Estilo de vida', query: '?type=life-style' },
+      { id: 3, name: 'Corrida', query: '?type=runnig' },
+      { id: 4, name: 'Footbol', query: '?type=footbal' },
+      { id: 5, name: 'Basktbol', query: '?type=footbal' },
+      { id: 6, name: 'Basktbol', query: '?type=footbal' },
+      { id: 7, name: 'Basktbol', query: '?type=footbal' },
+    ],
+  },
+  {
+    close: [
+      { id: 1, name: 'Todos os vestuários', query: '?type=all' },
+      { id: 2, name: 'Camisola', query: '?type=shirt' },
+      { id: 3, name: 'Camisola de capuz', query: '?type=hood' },
+      { id: 4, name: 'Calças e legging', query: '?type=pents' },
+      { id: 5, name: 'Casacos', query: '?type=footbal' },
+      { id: 6, name: 'Calções', query: '?type=shorts' },
+    ],
+  },
+  {
+    acessories: [
+      { id: 1, name: 'Todos os acessorios', query: '?type=all' },
+      { id: 2, name: 'Meias', query: '?type=socks' },
+      { id: 3, name: 'Muchilas e pasta', query: '?type=bags' },
+      { id: 4, name: 'Chapeus', query: '?type=hats' },
+      {
+        id: 5,
+        name: 'Equipamento desportivo',
+        query: '?type=sport-equipmente',
+      },
+    ],
+  },
 ];

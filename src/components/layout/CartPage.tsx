@@ -44,7 +44,10 @@ const CartPage = () => {
                            <span>SubTotal:</span>
                            <h3 className='base-semibold'>{totalPrice}(kz)</h3>
                         </div>
-                        <PaymentSidebar totalPrice={totalPrice} />
+                        <Link href='/checkout' className="flex items-center gap-4">
+                           <span className='base-semibold'>Coninuar</span>
+                           <Icons.arrowRight width={20} />
+                        </Link>
                      </div>
                   </div>
                </div>

@@ -16,13 +16,18 @@ type WishlistState = {
 
 // Load wishlist from local storage
 const loadWishlistFromLocalStorage = (): WishlistItem[] => {
-  const savedWishlist = localStorage.getItem('wishlist');
-  return savedWishlist ? JSON.parse(savedWishlist) : [];
+  if (typeof window !== 'undefined') {
+    const savedWishlist = localStorage.getItem('wishlist');
+    return savedWishlist ? JSON.parse(savedWishlist) : [];
+  }
+  return [];
 };
 
 // Save wishlist to local storage
 const saveWishlistToLocalStorage = (wishlist: WishlistItem[]) => {
-  localStorage.setItem('wishlist', JSON.stringify(wishlist));
+  if (typeof window !== 'undefined') {
+    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+  }
 };
 
 export const useWishlistStore = create<WishlistState>((set) => ({

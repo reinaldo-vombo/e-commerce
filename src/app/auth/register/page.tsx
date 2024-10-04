@@ -1,9 +1,5 @@
-import React from 'react'
+import Register from '@/components/auth/forms/Register'
 
 export default function page() {
-   return (
-      <div>
-         register
-      </div>
-   )
+   return <Register />
 }

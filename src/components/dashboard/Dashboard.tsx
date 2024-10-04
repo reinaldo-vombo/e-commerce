@@ -23,15 +23,15 @@ const links = [
       ),
    },
    {
-      label: "Produtos",
-      href: "product",
+      label: "Productos",
+      href: "/dashboard/product",
       icon: (
          <ShoppingBag className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
    },
    {
       label: "Encomendas",
-      href: "#",
+      href: "/dashboard/orders",
       icon: (
          <BookCheck className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),

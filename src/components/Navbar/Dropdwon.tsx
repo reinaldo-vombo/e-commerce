@@ -4,6 +4,8 @@ import React, { ReactNode, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, BarChart2, ChevronDown, HomeIcon, PieChart } from "lucide-react";
 import Image from "next/image";
+import { NAV_ITEMS } from "@/constant/site-content";
+import Link from "next/link";
 
 type TabsProps = {
    children: ReactNode;
@@ -154,45 +156,34 @@ const Nub = ({ selected }: { selected: number | null }) => {
    );
 };
 
-const Products = () => {
+const MensMenu = () => {
    return (
       <div>
          <div className="flex gap-4">
-            <div>
-               <h3 className="mb-2 text-sm font-medium">Startup</h3>
-               <a href="#" className="mb-1 block text-sm text-neutral-400">
-                  Bookkeeping
-               </a>
-               <a href="#" className="block text-sm text-neutral-400">
-                  Invoicing
-               </a>
+            <div className="w-20">
+               <h3 className="mb-2 text-sm font-medium">Tenis</h3>
+               {NAV_ITEMS[0].shoes?.map(item => (
+                  <Link href={`/productos?gender=homen&${item.query}`} className="mb-2 block text-sm text-neutral-400" key={item.id}>
+                     {item.name}
+                  </Link>
+               ))}
+
             </div>
             <div>
-               <h3 className="mb-2 text-sm font-medium">Scaleup</h3>
-               <a href="#" className="mb-1 block text-sm text-neutral-400">
-                  Live Coaching
-               </a>
-               <a href="#" className="mb-1 block text-sm text-neutral-400">
-                  Reviews
-               </a>
-               <a href="#" className="block text-sm text-neutral-400">
-                  Tax/VAT
-               </a>
+               <h3 className="mb-2 text-sm font-medium">Vestuario</h3>
+               {NAV_ITEMS[1].close?.map(item => (
+                  <Link href={`/productos?gender=homen&${item.query}`} className="mb-1 block text-sm text-neutral-400" key={item.id}>
+                     {item.name}
+                  </Link>
+               ))}
             </div>
             <div>
-               <h3 className="mb-2 text-sm font-medium">Enterprise</h3>
-               <a href="#" className="mb-1 block text-sm text-neutral-400">
-                  White glove
-               </a>
-               <a href="#" className="mb-1 block text-sm text-neutral-400">
-                  SOX Compliance
-               </a>
-               <a href="#" className="block text-sm text-neutral-400">
-                  Staffing
-               </a>
-               <a href="#" className="block text-sm text-neutral-400">
-                  More
-               </a>
+               <h3 className="mb-2 text-sm font-medium">Acessórios</h3>
+               {NAV_ITEMS[2].acessories?.map(item => (
+                  <Link href={`/productos?gender=homen&${item.query}`} className="mb-1 block text-sm text-neutral-400" key={item.id}>
+                     {item.name}
+                  </Link>
+               ))}
             </div>
          </div>
 
@@ -204,66 +195,67 @@ const Products = () => {
    );
 };
 
-const Pricing = () => {
+const WomensMenu = () => {
    return (
-      <div className="grid grid-cols-3 gap-4 divide-x divide-neutral-700">
-         <a
-            href="#"
-            className="flex w-full flex-col items-center justify-center py-2 text-neutral-400 transition-colors hover:text-neutral-50"
-         >
-            <HomeIcon className="mb-2 text-xl text-indigo-300" />
-            <span className="text-xs">Startup</span>
-         </a>
-         <a
-            href="#"
-            className="flex w-full flex-col items-center justify-center py-2 text-neutral-400 transition-colors hover:text-neutral-50"
-         >
-            <BarChart2 className="mb-2 text-xl text-indigo-300" />
-            <span className="text-xs">Scaleup</span>
-         </a>
-         <a
-            href="#"
-            className="flex w-full flex-col items-center justify-center py-2 text-neutral-400 transition-colors hover:text-neutral-50"
-         >
-            <PieChart className="mb-2 text-xl text-indigo-300" />
-            <span className="text-xs">Enterprise</span>
-         </a>
+      <div className="flex gap-4">
+         <div className="w-20">
+            <h3 className="mb-2 text-sm font-medium">Tenis</h3>
+            {NAV_ITEMS[0].shoes?.map(item => (
+               <Link href={`/productos?gender=mulher&${item.query}`} className="mb-2 block text-sm text-neutral-400" key={item.id}>
+                  {item.name}
+               </Link>
+            ))}
+
+         </div>
+         <div>
+            <h3 className="mb-2 text-sm font-medium">Vestuario</h3>
+            {NAV_ITEMS[1].close?.map(item => (
+               <Link href={`/productos?gender=mulher&${item.query}`} className="mb-1 block text-sm text-neutral-400" key={item.id}>
+                  {item.name}
+               </Link>
+            ))}
+         </div>
+         <div>
+            <h3 className="mb-2 text-sm font-medium">Acessórios</h3>
+            {NAV_ITEMS[2].acessories?.map(item => (
+               <Link href={`/productos?gender=mulher&${item.query}`} className="mb-1 block text-sm text-neutral-400" key={item.id}>
+                  {item.name}
+               </Link>
+            ))}
+         </div>
       </div>
    );
 };
 
-const Blog = () => {
+const ChlidrenMenu = () => {
    return (
       <div>
-         <div className="grid grid-cols-2 gap-2">
-            <a href="#">
-               <Image
-                  className="mb-2 h-14 w-full rounded object-cover"
-                  src="/course-graphql.jpg"
-                  width={825}
-                  height={490}
-                  alt="Placeholder image"
-               />
-               <h4 className="mb-0.5 text-sm font-medium">Lorem ipsum dolor</h4>
-               <p className="text-xs text-neutral-400">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet illo
-                  quidem eos.
-               </p>
-            </a>
-            <a href="#">
-               <Image
-                  className="mb-2 h-14 w-full rounded object-cover"
-                  src='/course-gatsby.jpg'
-                  width={825}
-                  height={490}
-                  alt="Placeholder image"
-               />
-               <h4 className="mb-0.5 text-sm font-medium">Lorem ipsum dolor</h4>
-               <p className="text-xs text-neutral-400">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet illo
-                  quidem eos.
-               </p>
-            </a>
+         <div className="flex gap-4">
+            <div className="w-20">
+               <h3 className="mb-2 text-sm font-medium">Tenis</h3>
+               {NAV_ITEMS[0].shoes?.map(item => (
+                  <Link href={`/productos?gender=crianca&${item.query}`} className="mb-2 block text-sm text-neutral-400" key={item.id}>
+                     {item.name}
+                  </Link>
+               ))}
+
+            </div>
+            <div>
+               <h3 className="mb-2 text-sm font-medium">Vestuario</h3>
+               {NAV_ITEMS[1].close?.map(item => (
+                  <Link href={`/productos?gender=crianca&${item.query}`} className="mb-1 block text-sm text-neutral-400" key={item.id}>
+                     {item.name}
+                  </Link>
+               ))}
+            </div>
+            <div>
+               <h3 className="mb-2 text-sm font-medium">Acessórios</h3>
+               {NAV_ITEMS[2].acessories?.map(item => (
+                  <Link href={`/productos?gender=crianca&${item.query}`} className="mb-1 block text-sm text-neutral-400" key={item.id}>
+                     {item.name}
+                  </Link>
+               ))}
+            </div>
          </div>
          <button className="ml-auto mt-4 flex items-center gap-1 text-sm text-indigo-300">
             <span>View more</span>
@@ -276,14 +268,14 @@ const Blog = () => {
 const TABS = [
    {
       title: "Homem",
-      Component: Products,
+      Component: MensMenu,
    },
    {
       title: "Mulher",
-      Component: Pricing,
+      Component: WomensMenu,
    },
    {
       title: "Criança",
-      Component: Blog,
+      Component: ChlidrenMenu,
    },
 ].map((n, idx) => ({ ...n, id: idx + 1 }));

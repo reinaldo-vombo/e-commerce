@@ -1,5 +1,5 @@
 import Lognin from "@/components/auth/forms/Lognin";
 
 export default function page() {
-   return <Lognin />
+   return <h1>hello</h1>
 }

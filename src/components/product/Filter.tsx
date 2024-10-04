@@ -1,38 +1,43 @@
-import { useState } from "react"
+
 import { motion } from "framer-motion"
 import { Separator } from "../ui/separator"
 import { Slider } from "@/components/ui/slider"
-import { BRANDS, CATEGORY } from "@/constant/site-content"
+import { BRANDS, COLORES, GENDER } from "@/constant/site-content"
 import Dropdwon from "../shared/CategoryDropdwon"
 import { HIDE_FILTERS, HIDE_FILTERS_CONTENT } from "@/lib/motion"
-import { FilterOptions } from "@/hooks/type"
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
+import Link from "next/link"
 
 type TFilterProps = {
    showFilters: boolean
-   onChange: (filter: FilterOptions) => void
+   createQueryString: (name: string, value: string) => string;
 }
 
-const FilterProducts = ({ showFilters, onChange }: TFilterProps) => {
-   const [price, setPrice] = useState(0);
+const FilterProducts = ({ showFilters, createQueryString }: TFilterProps) => {
+   const pathname = usePathname()
+   const searchParams = useSearchParams()
+   const router = useRouter()
+   const price = searchParams.get('price')
+   const color = searchParams.get('color')
+   const gender = searchParams.get('gender')
+   const brand = searchParams.get('brand')
 
    const submitPrice = (price: number[]) => {
-      console.log(price[0]);
-      setPrice(price[0])
+      router.push(pathname + '?' + createQueryString('price', `${price}`), { scroll: false })
 
-      if (price[0] <= 15000) {
-         onChange({ minPrice: price[0] })
-      } else if (price[0] > 15000) {
-         onChange({ maxPrice: price[0] })
-      }
+      // if (price <= 15000) {
+      // } else if (price > 15000) {
+      //    onChange({ maxPrice: price[0] })
+      // }
    }
    return (
       <motion.div className='relative p-2' initial={false} variants={HIDE_FILTERS} animate={showFilters ? 'show' : 'hidden'}>
          <motion.div className='' variants={HIDE_FILTERS_CONTENT} animate={showFilters ? 'show' : 'hidden'}>
             <div className='mt-6 space-y-4'>
                <div>
-                  <Dropdwon onChange={onChange} />
+                  <Dropdwon createQueryString={createQueryString} />
                </div>
-               <div className="space-y-3">
+               {/* <div className="space-y-3">
                   <h3 className="base-semibold">Preços</h3>
                   <h3>Selected Price: ${price}</h3>
                   <Slider
@@ -46,12 +51,12 @@ const FilterProducts = ({ showFilters, onChange }: TFilterProps) => {
                      <span>$5000</span>
                      <span>$30000</span>
                   </div>
-               </div>
+               </div> */}
                <div className="space-y-3">
                   <h3 className="base-semibold">Género</h3>
                   <div className="grid gap-2">
-                     {CATEGORY.map((item) => (
-                        <span className="cursor-pointer" key={item.id}>{item.title}</span>
+                     {GENDER.map((item) => (
+                        <Link href={pathname + '?' + createQueryString('gender', item.value)} scroll={false} className="cursor-pointer" key={item.id}>{item.name}</Link>
                      ))}
                   </div>
                   <Separator />
@@ -60,9 +65,9 @@ const FilterProducts = ({ showFilters, onChange }: TFilterProps) => {
                   <h3 className="base-semibold">Marcas</h3>
                   <div className="grid gap-2">
                      {BRANDS.map((brand) => (
-                        <div key={brand.id} onClick={() => onChange({ brand: brand.value })}>
+                        <Link href={pathname + '?' + createQueryString('brand', brand.value)} scroll={false} key={brand.id} >
                            {brand.logo}
-                        </div>
+                        </Link>
                      ))}
                   </div>
                   <Separator />
@@ -70,8 +75,13 @@ const FilterProducts = ({ showFilters, onChange }: TFilterProps) => {
                <div className="space-y-3">
                   <h3 className="base-semibold">Cores</h3>
                   <div className="flex items-center flex-wrap gap-2">
-                     {Array.from({ length: 10 }).map((_, index) => (
-                        <div className="bg-red-500 rounded-full size-6 cursor-pointer" key={index} />
+                     {COLORES.map((currentColor) => (
+                        <Link
+                           href={pathname + '?' + createQueryString('color', currentColor.value)}
+                           scroll={false}
+                           className={`rounded-full size-6 cursor-pointer ${color === currentColor.value ? 'outline outline-black' : ''}`}
+                           key={currentColor.id}
+                           style={{ background: `${currentColor.value}` }} />
                      ))}
                   </div>
                   <Separator />

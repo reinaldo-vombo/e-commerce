@@ -1,4 +1,4 @@
-'use client'
+
 import {
    Carousel,
    CarouselContent,
@@ -6,7 +6,6 @@ import {
    CarouselNext,
    CarouselPrevious,
 } from "@/components/ui/carousel"
-import { TCarousel } from "./type"
 import { PRODUCTS } from "@/constant/site-content"
 import Product from "../product/ProductList"
 
