@@ -73,3 +73,42 @@ export const resetPasswordSchema = z.object({
     message: 'Palavra-passe deve conter no minimo 5 cararteres',
   }),
 });
+export const personalInfoSchema = z.object({
+  avatar: z.string().optional(),
+  name: z.string().min(5, {
+    message: 'Nome deve conter no minimo 5 cararteres',
+  }),
+  email: z.string().email({ message: 'Email invalido' }).min(1, {
+    message: 'Email é obrigatório',
+  }),
+  phone: z.number().optional(),
+  address: z.string().min(1, {
+    message: 'Endereço é obrigatório',
+  }),
+});
+export const securityInfoSchema = z.object({
+  currentPassword: z.string().min(1, {
+    message: 'Palavra-passe deve conter no minimo 5 cararteres',
+  }),
+  newPassword: z.string().min(5, {
+    message: 'Palavra-passe deve conter no minimo 5 cararteres',
+  }),
+  confirmPassword: z.string().min(1, {
+    message: 'Palavra-passe deve conter no minimo 5 cararteres',
+  }),
+});
+export const blogSchema = z.object({
+  thumbNail: z.array(z.instanceof(File)).nonempty({
+    message: 'Deve carregar uma imagem',
+  }),
+  title: z.string().min(1, {
+    message: 'Blog deve conter titulo',
+  }),
+  description: z.string().min(40, {
+    message: 'Descrição deve conter no minino 40 caractres',
+  }),
+  userId: z.string().min(1, {
+    message: 'E necessario o id do utilizador',
+  }),
+  status: z.string().optional(),
+});

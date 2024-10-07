@@ -6,7 +6,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { ArrowLeft, ArrowUpDown, BookCheck, CreditCard, Home, Images, Megaphone, MessageSquare, Settings, ShoppingBag, Store, User } from "lucide-react";
+import { ArrowLeft, ArrowUpDown, BookCheck, CreditCard, Home, Images, LucideBoxes, Megaphone, MessageSquare, Settings, ShoppingBag, Store, User } from "lucide-react";
 import NavBar from "./NavBar";
 import { Separator } from "../ui/separator";
 
@@ -27,6 +27,13 @@ const links = [
       href: "/dashboard/product",
       icon: (
          <ShoppingBag className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+      ),
+   },
+   {
+      label: "Inventorio",
+      href: "/dashboard/inventory-managemant",
+      icon: (
+         <LucideBoxes className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
    },
    {
@@ -52,7 +59,7 @@ const links = [
    },
    {
       label: "Loja",
-      href: "#",
+      href: "/dashboard/store-management",
       icon: (
          <Store className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
@@ -66,7 +73,7 @@ const links = [
    },
    {
       label: "Blog",
-      href: "#",
+      href: "/dashboard/blog-management",
       icon: (
          <Images className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
@@ -123,7 +130,7 @@ export function Dasboard({ children }: TDashbord) {
                   <SidebarLink
                      link={{
                         label: "Manu Arora",
-                        href: "#",
+                        href: "/dashboard/profile",
                         icon: (
                            <Image
                               src="/avatar.jpg"

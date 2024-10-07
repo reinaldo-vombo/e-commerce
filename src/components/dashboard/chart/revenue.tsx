@@ -60,7 +60,7 @@ export default function RevenueChart() {
    // Can also pass in options for html2canvas
    // const [getPng, { ref }] = useCurrentPng({ backgroundColor: '#000' });
    return (
-      <Card className="w-full max-w-4xl mx-auto">
+      <Card className="w-full mx-auto">
          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-2xl font-bold">Orcamento Total</CardTitle>
             <div className='flex items-center gap-5'>

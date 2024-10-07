@@ -351,6 +351,10 @@ export const PRODUCT_TYPE = [
   { id: 2, value: 'Tshite', name: 'Tshite' },
   { id: 3, value: 'Calças', name: 'Calças' },
 ];
+export const STATUS = [
+  { id: 1, name: 'Publicado', value: 'Publicado' },
+  { id: 2, name: 'Não Publicado', value: 'Não Publicado' },
+];
 export const NAV_ITEMS = [
   {
     shoes: [

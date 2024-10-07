@@ -3,11 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import Image from 'next/image'
 import Selector from '../shared/Selector'
-
-const PRODUCT_STATE = [
-   { id: 1, name: 'Publicado', value: 'Publicado' },
-   { id: 2, name: 'Não Publicado', value: 'Não Publicado' },
-]
+import { STATUS } from '@/constant/site-content'
 
 const ImagePreview = ({ formField }: any) => {
    return (
@@ -29,7 +25,7 @@ const ImagePreview = ({ formField }: any) => {
             </CardHeader>
             <Separator />
             <CardContent>
-               <Selector placeholder='Stado' options={PRODUCT_STATE} formField={formField} className='w-full' />
+               <Selector placeholder='Stado' options={STATUS} formField={formField} className='w-full' />
             </CardContent>
          </Card>
       </div>

@@ -74,7 +74,7 @@ const FileUploader = ({ maxFiles = 1, size = 'large', formField }: TFileUploder)
             </div>
          </div>
          <aside className={`${maxFiles > 1 ? 'flex justify-center flex-col gap-3' : 'flex items-center flex-wrap'}`}>
-            {files.length > 0 && (
+            {files.length > 1 && (
                <motion.div
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
