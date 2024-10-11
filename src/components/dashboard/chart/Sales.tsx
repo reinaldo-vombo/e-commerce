@@ -13,6 +13,9 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { useCurrentPng } from "recharts-to-png"
 import DowloadToPngButton from "./DowloadToPngButton"
+type TChartProps = {
+   className?: string
+}
 
 const chartData = [
    { month: "January", desktop: 186, mobile: 80 },
@@ -34,10 +37,10 @@ const chartConfig = {
    },
 } satisfies ChartConfig
 
-export function SalesChart() {
+export function SalesChart({ className }: TChartProps) {
    const [getPng, { ref, isLoading }] = useCurrentPng();
    return (
-      <Card className="w-full max-w-4xl mx-auto">
+      <Card className={`w-full ${className ? className : 'max-w-4xl mx-auto'}`}>
          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-2xl font-bold">Vendas</CardTitle>
             <DowloadToPngButton getPng={getPng} isLoading={isLoading} fileName="vendas" />

@@ -11,6 +11,8 @@ import AlertModal from '@/components/shared/AlertModal'
 import Modal from '@/components/shared/Modal'
 import CreateProduct from '../forms/CreateProduct'
 import Link from 'next/link'
+import ProductDetails from '../layout/ProductDetails'
+import { ScrollArea } from '@/components/ui/scroll-area'
 
 type Product = {
    id: number;
@@ -199,8 +201,11 @@ const ProductTable = () => {
                            <div className="flex space-x-2">
                               <Link href='update-product' className='border border-slate-200 rounded-lg' aria-label={`Editar ${product.name}`}><Edit className="h-4 w-4" /></Link>
 
-                              <SheetModal label={`Edit ${product.name}`} trigger={<Eye className="h-4 w-4" />} side='left'>
-                                 hello
+                              <SheetModal label={`Edit ${product.name}`} trigger={<Eye className="h-4 w-4" />} side='right' className='sm:min-w-[34rem]'>
+                                 <ScrollArea className='h-[700px]'>
+                                    <ProductDetails />
+
+                                 </ScrollArea>
                               </SheetModal>
                               <AlertModal className='border border-slate-200 rounded-lg' onSubmit={() => handleDelete(product.id)} trigger={<Trash2 className="h-4 w-4" />} label={`Delete ${product.name}`} />
                            </div>
