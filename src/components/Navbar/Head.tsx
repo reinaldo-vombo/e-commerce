@@ -12,6 +12,7 @@ import Link from "next/link"
 import InfoNav from "./InfoNav"
 import SheetModal from "../shared/SheetModal"
 import FavoriteItem from "../wishList/ListItem"
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 
 const Head = () => {
    const path = usePathname()
@@ -28,6 +29,7 @@ const Head = () => {
          window.removeEventListener('scroll', handleScroll);
       };
    }, []);
+   const isLogIn = true
    return (
       <header className={`fixed w-full z-30 ${path === '/noticias' ? 'bg-black' : scrolled ? 'bg-white shadow' : `bg-transparent ${path === '/' ? 'text-black' : 'text-white'} `} transition-all ease-in`}>
          {path === '/noticias' ? <BlogNav /> : path === '/checkout' ? <InfoNav /> : (
@@ -45,9 +47,18 @@ const Head = () => {
                      </div>
                      <div className="flex items-center gap-3">
                         <SearchDropdow />
-                        <Link href='/auth' aria-label="user icon" className="hover:bg-slate-200 rounded-full p-2 flex items-center justify-center">
-                           <Icons.user width={25} />
-                        </Link>
+                        {isLogIn ? (
+                           <Link href='/perfiel'>
+                              <Avatar className="size-[25px]">
+                                 <AvatarImage src="/placeholder-user.jpg" alt="Customer" />
+                                 <AvatarFallback>CN</AvatarFallback>
+                              </Avatar>
+                           </Link>
+                        ) : (
+                           <Link href='/auth' aria-label="user icon" className="hover:bg-slate-200 rounded-full p-2 flex items-center justify-center">
+                              <Icons.user width={25} />
+                           </Link>
+                        )}
                         <Link href='/cart' className="hover:bg-slate-200 rounded-full p-2 flex items-center justify-center">
                            <Icons.shoppingCart width={25} />
                         </Link>

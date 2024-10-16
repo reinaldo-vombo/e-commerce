@@ -12,3 +12,8 @@ export type ExpandableProps = {
   autoPlay?: boolean;
   className?: string;
 };
+export type TStarRatingProps = {
+  rating: number;
+  setRating: (rating: number) => void;
+  name: string;
+};

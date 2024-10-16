@@ -7,12 +7,6 @@ export default function Orders() {
    return (
       <section>
          <OverViewCards />
-         <div className='grid grid-cols-12 gap-4'>
-            <div className='col-span-8'>
-               <SalesChart />
-            </div>
-            <div className='col-span-4'></div>
-         </div>
          <OrdersTable />
       </section>
    )

@@ -91,4 +91,4 @@ const SigleProduct = ({ product }: TSigleProduct) => {
    )
 }
 
-export default SigleProduct
+export default SigleProduct;
