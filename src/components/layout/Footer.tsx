@@ -6,7 +6,7 @@ import { Separator } from "../ui/separator"
 
 const Footer = () => {
    return (
-      <footer>
+      <footer className="hidden sm:block">
          <div className="container py-16">
             <div className="grid grid-cols-12 gap-4">
                <div className="col-span-3 space-y-7">

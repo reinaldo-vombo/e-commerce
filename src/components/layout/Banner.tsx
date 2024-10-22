@@ -10,6 +10,7 @@ import { NikeLogo } from '@/constant/svgIcons'
 import { motion, AnimatePresence } from 'framer-motion';
 import DotPattern from '../BotsBackground'
 import { cn } from '@/lib/utils'
+import MobileBenner from '../mobile/MobileBenner'
 
 const shoe = BANNER
 
@@ -21,8 +22,8 @@ const Banner = () => {
    }
 
    return (
-      <section className='h-screen overflow-hidden relative'>
-         <div className='pt-28 h-full relative isolate'>
+      <section className='sm:h-screen overflow-hidden relative'>
+         <div className='pt-28 h-full relative isolate hidden sm:block'>
             <div className='brand-name relative text-slate-200 z-[-1]' data-brand-name={shoe.title}></div>
             <div className='absolute bottom-[12%] right-[30%] rotate-[-22deg]'>
                <div className='relative w-[50rem] h-[25rem]'>
@@ -71,8 +72,9 @@ const Banner = () => {
          </div>
          <DotPattern
             className={cn(
-               "[mask-image:radial-gradient(300px_circle_at_center,white,transparent)]",
+               "[mask-image:radial-gradient(300px_circle_at_center,white,transparent)] hidden sm:block",
             )} />
+         <MobileBenner />
       </section>
    )
 }

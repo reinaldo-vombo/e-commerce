@@ -15,10 +15,12 @@ import {
   TruckIcon,
   ArrowPathIcon,
   PhoneIcon,
+  BellIcon,
 } from '@heroicons/react/24/outline';
 
 export const Icons = {
   user: UserIcon,
+  bell: BellIcon,
   x: XMarkIcon,
   shoppingCart: ShoppingCartIcon,
   heart: HeartIcon,

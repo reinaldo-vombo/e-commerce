@@ -43,7 +43,6 @@
     "react-dropzone": "^14.2.3",
     "react-froala-wysiwyg": "^4.2.2",
     "react-hook-form": "^7.53.0",
-    "react-responsive": "^10.0.0",
     "recharts": "^2.12.7",
     "recharts-to-png": "^2.3.2",
     "sharp": "^0.33.5",

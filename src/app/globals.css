@@ -100,7 +100,7 @@ h1 {
     @apply text-base font-semibold leading-[140%] tracking-wider;
   }
   .padding {
-    @apply py-[100px]
+    @apply py-[50px] md:py-[100px]
   }
 
 }

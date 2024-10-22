@@ -38,7 +38,7 @@ const ProductList = ({ props }: TProductProps) => {
       }
    }
    return (
-      <div className='col-span-4'>
+      <div className='col-span-4 hidden sm:block'>
          <CardBody className='relative'>
             <Link href={`/productos/${id}`}>
                <div className='relative h-[25rem] w-full'>

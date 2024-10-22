@@ -9,15 +9,19 @@ import {
 import { Icons } from "@/constant/icons"
 import { Logo } from "@/constant/svgIcons"
 import { Input } from "./ui/input"
-import { Suspense, useEffect, useState } from 'react'
+import { Fragment, Suspense, useEffect, useState } from 'react'
 import { PRODUCTS } from "@/constant/site-content"
 import Image from "next/image"
 import { TProduct } from "./product/type"
 import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 import { useDebouncedCallback } from 'use-debounce';
+import SearcList from "./mobile/SearcList"
+type TSeachBox = {
+   trigger: any
+}
 
 const POPULAR_SEACH = ['Nike Air Max Plus', 'Patta Chuck 70 Marquis Hi', 'Air MAx', 'Blazer']
-const SearchDropdow = () => {
+const SearchDropdow = ({ trigger }: TSeachBox) => {
    const searchParams = useSearchParams();
    const pathname = usePathname();
    const { replace } = useRouter();
@@ -48,15 +52,15 @@ const SearchDropdow = () => {
    }, 300);
    return (
       <Sheet>
-         <SheetTrigger>
-            <Icons.search width={25} />
+         <SheetTrigger className="w-full md:w-auto">
+            {trigger}
          </SheetTrigger>
-         <SheetContent side={"top"}>
-            <div className="container">
+         <SheetContent side={"top"} className="max-w-96 sm:max-w-full">
+            <div className="md:container mt-4 md:mt-0">
                <div className="grid grid-cols-12">
-                  <SheetHeader className="col-span-3">
-                     <SheetTitle><Logo width={90} /></SheetTitle>
-                     <div className="mt-6">
+                  <SheetHeader className="col-span-12 md:col-span-3">
+                     <SheetTitle className="hidden md:block"><Logo width={90} /></SheetTitle>
+                     <div className="mt-6 hidden md:block">
                         <h3>Termor de pesquisa populares</h3>
                         <ul className="grid gap-4">
                            {POPULAR_SEACH.map((item, index) => (
@@ -67,7 +71,7 @@ const SearchDropdow = () => {
                         </ul>
                      </div>
                   </SheetHeader>
-                  <div className="col-span-9 space-y-6">
+                  <div className="col-span-12 md:col-span-9 space-y-6">
                      <div className="relative">
                         <Input
                            onChange={(e) => {
@@ -80,16 +84,21 @@ const SearchDropdow = () => {
                      <Suspense key={query} fallback={<div>Loading...</div>}>
                         <div className="grid grid-cols-12 gap-4">
                            {filteredProducts.map((product) => (
-                              <div className="col-span-3" key={product.id}>
-                                 <div className="relative">
-                                    <Image src={product.image} className="rounded-xl" width={500} height={500} alt={product.title} />
+                              <Fragment key={product.id}>
+                                 <div className="hidden sm:flex col-span-3 flex-col items-center gap-4">
+                                    <div className="relative">
+                                       <Image src={product.image} className="rounded-xl w-16 md:w-[500px]" width={500} height={500} alt={product.title} />
+                                    </div>
+                                    <div className="space-y-4 mt-4 w-full">
+                                       <h2 className="font-bold text-sm">{product.title}</h2>
+                                       <span className="text-slate-300 hidden md:block">Sapatilha para homem</span>
+                                       <h3 className="md:font-bold text-sm">{product.price} kz</h3>
+                                    </div>
                                  </div>
-                                 <div className="space-y-4 mt-4">
-                                    <h2 className="font-bold">{product.title}</h2>
-                                    <span className="text-slate-300">Sapatilha para homem</span>
-                                    <h3 className="font-bold">{product.price} kz</h3>
-                                 </div>
-                              </div>
+                                 {/* Mobile */}
+                                 <SearcList props={product} />
+                                 {/* Mobile */}
+                              </Fragment>
                            ))}
                         </div>
                      </Suspense>

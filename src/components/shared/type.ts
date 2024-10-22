@@ -22,6 +22,7 @@ export type SheetProps = {
   side: 'top' | 'bottom' | 'left' | 'right';
   trigger: any;
   className?: string;
+  triggerClass?: string;
   label?: string;
 };
 export type TCarousel = {

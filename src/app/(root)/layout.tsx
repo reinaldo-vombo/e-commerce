@@ -8,7 +8,7 @@ export default function MainLayout({ children }: LayoutProp) {
    return (
       <Fragment>
          <Header />
-         <main>
+         <main className="px-4 sm:px-0">
             {children}
          </main>
          <Footer />

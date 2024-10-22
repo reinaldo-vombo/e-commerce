@@ -31,6 +31,12 @@ const ProductDetails = () => {
                <li className="flex items-center gap-1">
                   <b>Tamanhos:</b> {sizes}
                </li>
+               <li className="flex items-center gap-1">
+                  <b>Estado:</b> Publicado
+               </li>
+               <li className="flex items-center gap-1">
+                  <b>Stock:</b> 20
+               </li>
             </ul>
             <div className="mt-4 space-y-5">
                <h2 className="h3-bold">Analiticys</h2>

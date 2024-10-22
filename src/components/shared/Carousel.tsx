@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/carousel"
 import { PRODUCTS } from "@/constant/site-content"
 import Product from "../product/ProductList"
+import ProductCard from "../mobile/ProductCard"
 
 
 const ProductCarousel = () => {
@@ -16,13 +17,14 @@ const ProductCarousel = () => {
       <Carousel>
          <CarouselContent>
             {PRODUCTS.map((item) => (
-               <CarouselItem className="basis-1/3" key={item.id}>
-                  <Product props={item} key={item.id} />
+               <CarouselItem className="sm:basis-1/3" key={item.id}>
+                  <Product props={item} />
+                  <ProductCard props={item} />
                </CarouselItem>
             ))}
          </CarouselContent>
-         <CarouselPrevious />
-         <CarouselNext />
+         <CarouselPrevious className="hidden md:block" />
+         <CarouselNext className="hidden md:block" />
       </Carousel>
 
    )

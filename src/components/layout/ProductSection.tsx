@@ -7,7 +7,7 @@ const ProductSection = () => {
 
    return (
       <section className='padding'>
-         <div className="container space-y-7">
+         <div className="md:container space-y-7">
             <ProductHeader quey='new' title='Novos Productos' />
             <ProductCarousel />
          </div>

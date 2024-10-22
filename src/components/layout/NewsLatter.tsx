@@ -10,13 +10,13 @@ const NewsLatter = () => {
       setIsSubmiting(true)
    }
    return (
-      <section className='bg-black'>
+      <section className='bg-black rounded-lg md:rounded-none'>
          <div className="padding container">
             <div className='text-white text-center'>
                <h1 className='uppercase h2-bold'>Adere e receba 10% de desconto</h1>
                <p>Receba novidade sobre artigo e atualizações na tua caixa de entrada</p>
                <div className="flex justify-center mt-6">
-                  <div className='w-1/2 flex items-center gap-4'>
+                  <div className='w-full md:w-1/2 flex items-center flex-col md:flex-row gap-4'>
                      <Input type='email' className='text-black' placeholder='Seu email' />
                      <AnimatedSubscribeButton
                         onClick={handleSubscribe}

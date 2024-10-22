@@ -31,7 +31,7 @@ const Head = () => {
    }, []);
    const isLogIn = true
    return (
-      <header className={`fixed w-full z-30 ${path === '/noticias' ? 'bg-black' : scrolled ? 'bg-white shadow' : `bg-transparent ${path === '/' ? 'text-black' : 'text-white'} `} transition-all ease-in`}>
+      <header className={`fixed w-full z-30 ${path === '/noticias' ? 'bg-black' : scrolled ? 'bg-white shadow' : `bg-transparent ${path === '/' ? 'text-black' : 'text-white'} `} transition-all ease-in hidden sm:block`}>
          {path === '/noticias' ? <BlogNav /> : path === '/checkout' ? <InfoNav /> : (
             <Fragment>
                <TopBar />
@@ -46,7 +46,7 @@ const Head = () => {
                         <ShiftingDropDown scrolled={scrolled} />
                      </div>
                      <div className="flex items-center gap-3">
-                        <SearchDropdow />
+                        <SearchDropdow trigger={<Icons.search width={25} />} />
                         {isLogIn ? (
                            <Link href='/perfiel'>
                               <Avatar className="size-[25px]">
