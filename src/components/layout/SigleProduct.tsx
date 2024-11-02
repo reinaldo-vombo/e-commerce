@@ -29,7 +29,7 @@ const SigleProduct = ({ product }: TSigleProduct) => {
    }
 
    return (
-      <section>
+      <section className="hidden md:block">
          <Breadcrumbe video="/video.mp4" />
          <div className="padding">
             <div className="container space-y-11">

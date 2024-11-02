@@ -9,7 +9,7 @@ import ListCard from "../mobile/ListCard"
 const RecentProducts = () => {
   return (
     <section className="padding">
-      <div className="md:container space-y-6">
+      <div className="container space-y-6">
         <div>
           <Image src={'/sportbanner.jpg'} className="rounded-md w-full" width={1247} height={433} alt="sport banner image" />
         </div>

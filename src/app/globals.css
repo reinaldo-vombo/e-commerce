@@ -104,6 +104,7 @@ h1 {
   }
 
 }
+
 .ocean {
   height: 5%;
   width: 100%;
@@ -149,11 +150,6 @@ h1 {
   font-size: 27rem;
 }
 
-.gradient-background {
-  background: linear-gradient(120deg, #ff0099, #493240, #ff9900, #0066ff, #66ffcc, #ff66cc);
-  background-size: 300% 300%;
-  animation: gradient-animation 6s ease infinite;
-}
 .bar {
   overflow-x: auto; /* Allows horizontal scrolling */
   scrollbar-width: thin; /* For Firefox, makes the scrollbar thinner */
@@ -190,44 +186,59 @@ h1 {
 .active-color {
   outline: 2px solid black;
 }
-
-.tech-slideshow {
-  height: 200px;
-  max-width: 800px;
-  margin: 0 auto;
-  position: relative;
-  overflow: hidden;
-  transform: translate3d(0, 0, 0);
+/*OIS delete on swipe  */
+.ios-swiper ul {
+  margin-top: 11px;
+  list-style: none;
+}
+.ios-swiper .li {
+    position: relative;
+    border-right: 1px solid red;
 }
 
-.tech-slideshow > div {
-  height: 200px;
-  width: 2526px;
-  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/collage.jpg);
+.delete-btn {
+  z-index: 1;
   position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  transform: translate3d(0, 0, 0);
+  height: calc(100% - 2px);
+  width: 70px;
+  top: 50%;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(-50%);
+  background-color: red;
 }
-.tech-slideshow .mover-1 {
-  animation: moveSlideshow 12s linear infinite;
-}
-.tech-slideshow .mover-2 {
-  opacity: 0;
-  transition: opacity 0.5s ease-out;
-  background-position: 0 -200px;
-  animation: moveSlideshow 15s linear infinite;
-}
-.tech-slideshow:hover .mover-2 {
-  opacity: 1;
+    
+.msg-container { 
+  position: relative;  
+  z-index: 999; 
+  display: flex;
+  align-items: center;
+  background-color: white;
 }
 
-@keyframes moveSlideshow {
-  100% { 
-    transform: translateX(-66.6666%);  
-  }
+&:hover {
+  cursor: pointer;
 }
+
+.user-icon {
+  display: block;
+  height: 60px;
+  width: 60px;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 10px;
+  pointer-events: none;
+}
+    
+.message-text {
+  flex: 1;
+  margin-left: 12px;
+  padding: 8px 0;
+}
+  
+/*OIS delete on swipe  */
 @keyframes wave {
   0% { margin-left: 0; }
   100% { margin-left: -1600px;}

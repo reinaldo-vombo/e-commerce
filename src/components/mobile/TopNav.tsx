@@ -9,18 +9,20 @@ type TTopNav = {
 
 const MobileNav = ({ link = '/', showNotification = true, title }: TTopNav) => {
    return (
-      <nav className='sticky bg-white z-20 py-4 mb-4 h-[80px] w-full top-0 inset-x-0 flex items-center justify-between'>
-         <div>
-            <Link href={link}><Icons.arrowLeft width={20} /></Link>
-         </div>
-         <div>
-            <h1 className="text-black base-semibold">{title}</h1>
-         </div>
-         {showNotification && (
+      <nav className='sticky bg-white z-20 py-4 mb-4 h-[80px] w-full top-0 inset-x-0'>
+         <div className="container flex items-center justify-between">
             <div>
-               <Icons.bell width={20} />
+               <Link href={link}><Icons.arrowLeft width={20} /></Link>
             </div>
-         )}
+            <div>
+               <h1 className="text-black base-semibold">{title}</h1>
+            </div>
+            {showNotification && (
+               <div>
+                  <Icons.bell width={20} />
+               </div>
+            )}
+         </div>
       </nav>
    )
 }

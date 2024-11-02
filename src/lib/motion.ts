@@ -49,3 +49,12 @@ export const HIDE_FILTERS_CONTENT = {
     opacity: 1,
   },
 };
+//Mobile
+export const MESSAGE_DELETE_ANIMATION = { height: 0, opacity: 0 };
+export const MESSAGE_DELETE_TRANSITION = {
+  opacity: {
+    transition: {
+      duration: 0,
+    },
+  },
+};

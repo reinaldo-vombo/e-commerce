@@ -75,7 +75,7 @@ export const PRODUCTS = [
     image: '/product/NIKE+AIR+MAX+PLUS.png',
     images: [
       {
-        color: '',
+        color: 'red',
         urls: [
           '/product/NIKE+AIR+MAX+PLUS.png',
           '/product/NIKE+AIR+MAX+PLUS.png',

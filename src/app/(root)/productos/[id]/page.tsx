@@ -1,6 +1,8 @@
 
 import SigleProduct from "@/components/layout/SigleProduct";
+import MobileSingleProduct from "@/components/mobile/layout/MobileSingleProduct";
 import { PRODUCTS } from "@/constant/site-content";
+import { Fragment } from "react";
 type TSearchParams = {
    params: { id: string }
    searchParams?: { [key: string]: string | string[] | undefined }
@@ -12,5 +14,9 @@ export default function page({ params }: TSearchParams) {
    if (!product) {
       return 'loading...'
    }
-   return <SigleProduct product={product} />
+   return (
+      <Fragment>
+         <SigleProduct product={product} />
+      </Fragment>
+   )
 }

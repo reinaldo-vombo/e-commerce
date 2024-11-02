@@ -1,4 +1,5 @@
 import {
+  HomeIcon,
   EnvelopeIcon,
   EyeIcon,
   ShoppingCartIcon,
@@ -16,12 +17,15 @@ import {
   ArrowPathIcon,
   PhoneIcon,
   BellIcon,
+  ShareIcon
 } from '@heroicons/react/24/outline';
 
 export const Icons = {
+  home: HomeIcon,
   user: UserIcon,
   bell: BellIcon,
   x: XMarkIcon,
+  share: ShareIcon,
   shoppingCart: ShoppingCartIcon,
   heart: HeartIcon,
   envelope: EnvelopeIcon,

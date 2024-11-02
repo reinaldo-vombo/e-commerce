@@ -26,7 +26,7 @@ const CartPage = () => {
       setTotalPrice(updatedTotalPrice);
    };
    return (
-      <section>
+      <section className="hidden md:block">
          <Breadcrumbe title='Carrinho' />
          <div className="padding">
             <div className="container mt-16">
