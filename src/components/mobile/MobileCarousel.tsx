@@ -9,7 +9,6 @@ import {
 import { PRODUCTS } from "@/constant/site-content"
 import { useState } from "react";
 import { motion, AnimatePresence } from 'framer-motion';
-import ProductCard from "./ProductCard";
 import MobileSingleProduct from "./layout/MobileSingleProduct";
 import MobileProductCard from "./MobileProductCard";
 
@@ -21,13 +20,9 @@ const MobileCarousel = () => {
             <CarouselContent>
                {PRODUCTS.map((item) => (
                   <CarouselItem key={item.id}>
-                     <motion.div
-                        layoutId={item.id}
-                        onClick={() => setSelectedId(item.id)}
-                        style={{ cursor: 'pointer' }}
-                     >
-                        <MobileProductCard props={item} />
-                     </motion.div>
+                     <div style={{ cursor: 'pointer' }}>
+                        <MobileProductCard props={item} onToggleModal={setSelectedId} />
+                     </div>
                   </CarouselItem>
                ))}
             </CarouselContent>
@@ -55,8 +50,11 @@ const MobileCarousel = () => {
                      zIndex: 1000,
                   }}
                >
-                  <MobileSingleProduct productId={selectedId} products={PRODUCTS} setSelectedId={setSelectedId} />
-                  <motion.button onClick={() => setSelectedId(null)}>Close</motion.button>
+                  <MobileSingleProduct
+                     productId={selectedId}
+                     products={PRODUCTS}
+                     setSelectedId={setSelectedId}
+                  />
                </motion.div>
             )}
          </AnimatePresence>

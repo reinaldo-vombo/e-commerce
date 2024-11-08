@@ -2,7 +2,6 @@ import PurchaseTab from '../bottomNav/PurchaseTab';
 import { TProduct } from '@/components/product/type';
 import MobileProductPreview from '../MobileProductPreview';
 import { Dispatch, SetStateAction } from 'react';
-import SigleProductInfo from '../SigleProductInfo';
 import { ScrollArea } from '@/components/ui/scroll-area';
 type TSigleProduct = {
    products: TProduct[];
@@ -17,17 +16,12 @@ const MobileSingleProduct = ({ products, productId, setSelectedId }: TSigleProdu
    }
    return (
       <section className='sm:block w-full h-full space-y-4'>
-         <ScrollArea className='h-[900px]'>
+         <ScrollArea className='h-[1011px]'>
             <MobileProductPreview
-               image={product.image}
-               price={product.price}
-               title={product.title}
-               brand={product.brand}
-               images={product.images}
+               props={product}
                setSelectedId={setSelectedId} />
-            <SigleProductInfo product={product} />
+            <PurchaseTab />
          </ScrollArea>
-         <PurchaseTab />
       </section>
    )
 }

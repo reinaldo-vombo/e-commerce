@@ -1,6 +1,5 @@
 import { Icons } from "@/constant/icons"
 import SearchDropdow from "../SearchDropdow"
-import SheetModal from "../shared/SheetModal"
 import Image from "next/image"
 
 const MobileBenner = () => {

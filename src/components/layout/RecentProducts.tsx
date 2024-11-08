@@ -4,8 +4,9 @@ import ProductHeader from "../product/ProductHeader"
 import ProductCarousel from "../shared/Carousel"
 import Expandable from "../animata/expandable"
 import { PRODUCTS } from "@/constant/site-content"
-import ListCard from "../mobile/ListCard"
+import MobileList from "../mobile/layout/MobileList"
 
+const products = PRODUCTS
 const RecentProducts = () => {
   return (
     <section className="padding">
@@ -15,11 +16,7 @@ const RecentProducts = () => {
         </div>
         <ProductHeader quey="recent" title="Productos Recentes" />
         {/* Mobile */}
-        <div className="grid gap-4 md:hidden">
-          {PRODUCTS.map((item, index) => index < 5 && (
-            <ListCard props={item} key={item.id} />
-          ))}
-        </div>
+        <MobileList products={products} />
         {/* Mobile */}
         <div className="hidden md:block">
           <ProductCarousel />
@@ -37,7 +34,6 @@ const RecentProducts = () => {
               <Expandable />
             </div>
           </div>
-
         </div>
       </div>
     </section>

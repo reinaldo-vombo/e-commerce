@@ -66,8 +66,16 @@
     --color-delta: #4F1787;
   }
 }
+*{
+  outline: 1px solid red;
+  box-sizing: border-box;
+}
 html {
   font-family: var(--font-montserrat);
+}
+body {
+  cursor: auto;
+  overflow-x: hidden;
 }
 h1 {
   font-family: var(--font-archivo);

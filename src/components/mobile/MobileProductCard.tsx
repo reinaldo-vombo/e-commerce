@@ -7,14 +7,15 @@ import Image from "next/image";
 import { Icons } from "@/constant/icons";
 import SheetModal from "../shared/SheetModal";
 import { Feedback } from "../animata/feedback";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { FEEDBACKS } from "@/constant/site-content";
 import Stars from "../product/Stars";
 import { ScrollArea } from "../ui/scroll-area";
-import Link from "next/link";
+interface TProps extends TProductProps {
+   onToggleModal: Dispatch<SetStateAction<string | null>>
+}
 
-
-const MobileProductCard = ({ props }: TProductProps) => {
+const MobileProductCard = ({ props, onToggleModal }: TProps) => {
    const [stars, setStars] = useState<null | number>(null)
    const { title, image, price, id } = props
    const addToCart = useCartStore((state) => state.addToCart);
@@ -36,16 +37,16 @@ const MobileProductCard = ({ props }: TProductProps) => {
    }
 
    return (
-      <div className="col-span-4 space-y-5 sm:hidden">
-         <div className="h-56 relative">
+      <div className="col-span-4 space-y-5 sm:hidden relative">
+         <motion.div layoutId={props.id} className="h-56 relative" onClick={() => onToggleModal(props.id)}>
             <Image src={image} className="object-cover rounded-lg" fill sizes="100%" alt={title} />
-            <motion.button whileTap={{ scale: 0.5 }} className={`${isInWishlist?.id === id ? 'text-red-500' : ''} absolute top-5 right-5`} onClick={handleAddToWishlist}>
-               <Icons.heart width={30} fill={`${isInWishlist?.id === id ? 'red' : 'none'}`} />
-            </motion.button>
-            <motion.button whileTap={{ scale: 0.5 }} className={`absolute top-5 left-5`} onClick={() => addToCart({ id, title, price, image })}>
-               <Icons.shoppingCart width={30} fill={`${isInCart?.id === id ? 'black' : 'none'}`} />
-            </motion.button>
-         </div>
+         </motion.div>
+         <motion.button whileTap={{ scale: 0.5 }} className={`${isInWishlist?.id === id ? 'text-red-500' : ''} absolute top-5 right-5`} onClick={handleAddToWishlist}>
+            <Icons.heart width={30} fill={`${isInWishlist?.id === id ? 'red' : 'none'}`} />
+         </motion.button>
+         <motion.button whileTap={{ scale: 0.5 }} className={`absolute top-5 left-5`} onClick={() => addToCart({ id, title, price, image })}>
+            <Icons.shoppingCart width={30} fill={`${isInCart?.id === id ? 'black' : 'none'}`} />
+         </motion.button>
          <div className="flex items-center justify-between">
             <div className="space-y-3">
                <h2 className="base-semibold">{title}</h2>
