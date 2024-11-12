@@ -1,9 +1,8 @@
 'use client'
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { ReactNode, useCallback, useEffect, useState } from "react";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, BarChart2, ChevronDown, HomeIcon, PieChart } from "lucide-react";
-import Image from "next/image";
+import { ArrowRight, ChevronDown, } from "lucide-react";
 import { NAV_ITEMS } from "@/constant/site-content";
 import Link from "next/link";
 
@@ -124,11 +123,7 @@ const Bridge = () => (
 const Nub = ({ selected }: { selected: number | null }) => {
    const [left, setLeft] = useState(0);
 
-   useEffect(() => {
-      moveNub();
-   }, [selected]);
-
-   const moveNub = () => {
+   const moveNub = useCallback(() => {
       if (selected) {
          const hoveredTab = document.getElementById(`shift-tab-${selected}`);
          const overlayContent = document.getElementById("overlay-content");
@@ -142,7 +137,13 @@ const Nub = ({ selected }: { selected: number | null }) => {
 
          setLeft(tabCenter);
       }
-   };
+   }, [selected]);
+
+   useEffect(() => {
+      moveNub();
+   }, [moveNub]);
+
+
 
    return (
       <motion.span

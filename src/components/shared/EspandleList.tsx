@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Grip, Plus, X } from "lucide-react";
+import Image from "next/image";
 
 interface Birthday {
    name: string;
@@ -282,10 +283,12 @@ const Month = ({
                   }}
                   className="size-10 center rounded-full text-muted-foreground -ml-2 font-bold text-sm"
                >
-                  <img
+                  <Image
+                     width={400}
+                     height={400}
                      src={item.image}
                      alt={item.name}
-                     className="rounded-full size-10"
+                     className="rounded-full size-10 w-full"
                   />
                </div>
             ))}
@@ -507,7 +510,9 @@ const Birthday = () => {
                                     layoutId={`profile-${birthday.name}`}
                                     className="size-10 rounded-full min-w-10"
                                  >
-                                    <img
+                                    <Image
+                                       width={40}
+                                       height={40}
                                        src={birthday.image}
                                        alt={birthday.name}
                                        className="rounded-full w-10 h-10"
@@ -561,7 +566,9 @@ const Birthday = () => {
                                     layoutId={`profile-${selected.name}`}
                                     className="size-20 rounded-full min-w-10"
                                  >
-                                    <img
+                                    <Image
+                                       width={400}
+                                       height={400}
                                        src={selected.image}
                                        alt={selected.name}
                                        className="rounded-full size-full"

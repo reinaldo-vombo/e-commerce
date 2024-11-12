@@ -1,5 +1,4 @@
 'use client'
-import { PRODUCTS } from '@/constant/site-content'
 import React, { useState } from 'react'
 import ListCard from '../ListCard';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -14,6 +13,9 @@ type TProps = {
 const MobileList = ({ products }: TProps) => {
    const [selectedId, setSelectedId] = useState<string | null>(null);
    const product = products.find(item => item.id === selectedId)
+   if (!product) {
+      return <p>loading</p>;
+   }
 
    return (
       <>
@@ -55,4 +57,4 @@ const MobileList = ({ products }: TProps) => {
    )
 }
 
-export default MobileList
+export default MobileList;
