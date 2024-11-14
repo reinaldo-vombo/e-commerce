@@ -11,6 +11,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from 'framer-motion';
 import MobileSingleProduct from "./layout/MobileSingleProduct";
 import MobileProductCard from "./MobileProductCard";
+import ModalTansition from "../shared/AnimatedModal";
 
 const MobileCarousel = () => {
    const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -29,35 +30,18 @@ const MobileCarousel = () => {
             <CarouselPrevious className="hidden md:block" />
             <CarouselNext className="hidden md:block" />
          </Carousel>
+         <ModalTansition
+            isOpen={!!selectedId}
+            onClose={() => setSelectedId(null)}
+            layoutId={selectedId || ""}
+         >
+            <MobileSingleProduct
+               productId={selectedId}
+               products={PRODUCTS}
+               setSelectedId={setSelectedId}
+            />
+         </ModalTansition>
 
-         <AnimatePresence>
-            {selectedId && (
-               <motion.div
-                  layoutId={selectedId}
-                  initial={{ scale: 0.5, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0.5, opacity: 0 }}
-                  style={{
-                     position: 'fixed',
-                     top: 0,
-                     left: 0,
-                     right: 0,
-                     bottom: 0,
-                     background: 'white',
-                     display: 'flex',
-                     justifyContent: 'center',
-                     alignItems: 'center',
-                     zIndex: 1000,
-                  }}
-               >
-                  <MobileSingleProduct
-                     productId={selectedId}
-                     products={PRODUCTS}
-                     setSelectedId={setSelectedId}
-                  />
-               </motion.div>
-            )}
-         </AnimatePresence>
       </>
    )
 }

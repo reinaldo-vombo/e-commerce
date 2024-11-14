@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useState } from "react";
 import Stars from "../product/Stars";
 import { TProduct } from "../product/type";
+import { ScrollArea } from "../ui/scroll-area";
 
 // type TProps = {
 //    image: string;
@@ -47,7 +48,7 @@ const MobileProductPreview = ({ props, setSelectedId }: IProsps) => {
       }
    }
    return (
-      <div className="w-[84%]">
+      <div className="h-screen">
          <div className='relative h-80'>
             <Image src={preview} className='object-cover' fill sizes='100%' alt={title} />
             <div className='absolute to inset-0 bg-gradient-to-b from-[#484848] to-transparent h-[10.25rem]'>
@@ -61,7 +62,7 @@ const MobileProductPreview = ({ props, setSelectedId }: IProsps) => {
                </div>
             </div>
          </div>
-         <div className="mt-4 container">
+         <ScrollArea className="mt-4 container h-[500px]">
             <div className='flex items-center gap-4'>
                {urls.map((src, index) => (
                   <button className={`${slectedColor === index ? 'border border-black' : ''} rounded-md`} type="button" key={index} onClick={() => setPreview(src)}>
@@ -110,7 +111,7 @@ const MobileProductPreview = ({ props, setSelectedId }: IProsps) => {
                   </div>
                </div>
             </div>
-         </div>
+         </ScrollArea>
       </div>
    )
 }

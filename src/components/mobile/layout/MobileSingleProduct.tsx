@@ -5,7 +5,7 @@ import { Dispatch, SetStateAction } from 'react';
 import { ScrollArea } from '@/components/ui/scroll-area';
 type TSigleProduct = {
    products: TProduct[];
-   productId: string;
+   productId: string | null;
    setSelectedId: Dispatch<SetStateAction<string | null>>
 }
 
@@ -16,12 +16,10 @@ const MobileSingleProduct = ({ products, productId, setSelectedId }: TSigleProdu
    }
    return (
       <section className='sm:block w-full h-full space-y-4'>
-         <ScrollArea className='h-[1011px]'>
-            <MobileProductPreview
-               props={product}
-               setSelectedId={setSelectedId} />
-            <PurchaseTab />
-         </ScrollArea>
+         <MobileProductPreview
+            props={product}
+            setSelectedId={setSelectedId} />
+         <PurchaseTab />
       </section>
    )
 }

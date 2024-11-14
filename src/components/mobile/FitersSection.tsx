@@ -32,21 +32,21 @@ const FitersSection = () => {
       setSelectedIdx(id)
    }
    return (
-      <div className='block sm:hidden mt-6'>
-         <div className='flex items-center justify-around'>
+      <section className='block sm:hidden mt-6 container'>
+         <div className='flex items-center justify-between'>
             {FITER.map((item) => (
                <motion.div className={`p-2 rounded-lg w-fit flex items-center gap-2 text-white cursor-pointer transition-colors ${selectedIdx === item.id ? 'bg-neutral-700' : 'bg-slate-100'}`} key={item.id} onClick={() => handleSelectedItem(item.id)}>
-                  <motion.div className='relative size-8'>
+                  <motion.div className='relative size-[3.5rem]'>
                      <Image src={item.icon} fill sizes='100%' alt={item.name} />
                   </motion.div>
-                  <motion.span
+                  {/* <motion.span
                      initial={{ width: 0, opacity: 0 }}
                      animate={{ width: selectedIdx === item.id ? 'auto' : 0, opacity: selectedIdx === item.id ? 1 : 0 }}
-                  >{item.name}</motion.span>
+                  >{item.name}</motion.span> */}
                </motion.div>
             ))}
          </div>
-      </div>
+      </section>
    )
 }
 

@@ -3,7 +3,6 @@ import { MESSAGE_DELETE_ANIMATION, MESSAGE_DELETE_TRANSITION } from "@/lib/motio
 import { useCartStore } from "@/store/cartStore";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import { useState } from "react";
 import MobileNav from "../TopNav";
 import NavigationTab from "../bottomNav/NavigationTab";
 import { Icons } from "@/constant/icons";
@@ -11,12 +10,12 @@ import { Icons } from "@/constant/icons";
 const DELETE_BTN_WIDTH = 70;
 const CartMobilePage = () => {
    const cart = useCartStore((state) => state.cart);
-   const [cartList, setCartList] = useState(cart)
+   const removeFromCart = useCartStore((state) => state.removeFromCart);
 
    const handleDragEnd = (info: any, messageId: any) => {
       const dragDistance = info.point.x
       if (dragDistance < -DELETE_BTN_WIDTH) {
-         setCartList(cartList.filter(message => message.id !== messageId))
+         removeFromCart(messageId)
       }
    }
    return (
@@ -24,7 +23,7 @@ const CartMobilePage = () => {
          <MobileNav title="Carrinho" />
          <ul className="h-screen">
             <AnimatePresence>
-               {cartList.length > 0 ? cartList.map(message => (
+               {cart.length > 0 ? cart.map(message => (
                   <motion.li
                      className="li"
                      key={message.id}

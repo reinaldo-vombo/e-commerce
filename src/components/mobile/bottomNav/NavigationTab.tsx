@@ -4,6 +4,7 @@ import FavoriteItem from '@/components/wishList/ListItem';
 import { Icons } from '@/constant/icons';
 import Link from 'next/link';
 import React from 'react'
+import CartMobilePage from '../layout/Cart';
 
 const NavigationTab = () => {
     return (
@@ -21,7 +22,7 @@ const NavigationTab = () => {
                     <SheetModal
                         label="shop icon"
                         side="right"
-                        className='w-[87%] md:w-3/4 left-0 md:left-auto'
+                        className='w-full md:w-3/4 left-0 md:left-auto'
                         trigger={
                             <div className="hover:bg-slate-200 rounded-full p-2 flex items-center justify-center">
                                 <Icons.heart width={25} />
@@ -32,9 +33,19 @@ const NavigationTab = () => {
                     </SheetModal>
                 </div>
                 <div className="col-span-3">
-                    <Link href='/cart' className="hover:bg-slate-200 rounded-full p-2 flex items-center justify-center">
-                        <Icons.shoppingCart width={25} />
-                    </Link>
+                    <SheetModal
+                        label="shop icon"
+                        side="right"
+                        className='w-full md:w-3/4 left-0 md:left-auto'
+                        trigger={
+                            <div className="hover:bg-slate-200 rounded-full p-2 flex items-center justify-center">
+                                <Icons.shoppingCart width={25} />
+                            </div>
+                        }
+                    >
+                        <CartMobilePage />
+                    </SheetModal>
+
                 </div>
             </div>
         </div>
