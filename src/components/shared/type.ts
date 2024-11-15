@@ -24,6 +24,7 @@ export type SheetProps = {
   className?: string;
   triggerClass?: string;
   label?: string;
+  title?: string
 };
 export type TCarousel = {
   chlidren: ReactNode;

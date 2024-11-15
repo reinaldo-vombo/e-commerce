@@ -19,7 +19,6 @@ export type IcrementeItemProps = {
 };
 export type TListItems = {
   cart: CartItem[];
-  onPriceChange: (newPrice: number, productId: string) => void;
 };
 export type TPaymentProps = {
   totalPrice: number;

@@ -6,9 +6,10 @@ type Props = {
    value?: number
    min?: number
    max?: number
+   className?: string
    onChange?: (value: number) => void
 }
-export default function Input({ value = 0, min = -Infinity, max = Infinity, onChange }: Props) {
+export default function QuantityButton({ value = 0, min = -Infinity, max = Infinity, className, onChange }: Props) {
    const defaultValue = React.useRef(value)
    const inputRef = React.useRef<HTMLInputElement>(null)
    const [animated, setAnimated] = React.useState(true)
@@ -37,7 +38,7 @@ export default function Input({ value = 0, min = -Infinity, max = Infinity, onCh
       onChange?.(newVal)
    }
    return (
-      <div className="group flex items-stretch rounded-md text-3xl font-semibold ring ring-zinc-200 transition-[box-shadow] focus-within:ring-2 focus-within:ring-blue-500 dark:ring-zinc-800">
+      <div className={`group flex items-stretch rounded-md font-semibold ring ring-zinc-200 transition-[box-shadow] focus-within:ring-2 focus-within:ring-blue-500 dark:ring-zinc-800 ${className ? className : 'text-3xl'}`}>
          <button
             aria-hidden
             tabIndex={-1}

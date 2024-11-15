@@ -13,6 +13,7 @@ import InfoNav from "./InfoNav"
 import SheetModal from "../shared/SheetModal"
 import FavoriteItem from "../wishList/ListItem"
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
+import CartPage from "../layout/CartPage"
 
 const Head = () => {
    const path = usePathname()
@@ -59,12 +60,23 @@ const Head = () => {
                               <Icons.user width={25} />
                            </Link>
                         )}
-                        <Link href='/cart' className="hover:bg-slate-200 rounded-full p-2 flex items-center justify-center">
-                           <Icons.shoppingCart width={25} />
-                        </Link>
                         <SheetModal
                            label="shop icon"
                            side="right"
+                           className="sm:max-w-lg"
+                           title="Productos No Carrinho"
+                           trigger={
+                              <div className="hover:bg-slate-200 rounded-full p-2 flex items-center justify-center">
+                                 <Icons.shoppingCart width={25} />
+                              </div>
+                           }
+                        >
+                           <CartPage />
+                        </SheetModal>
+                        <SheetModal
+                           label="shop icon"
+                           side="right"
+                           className="sm:max-w-lg"
                            trigger={
                               <div className="hover:bg-slate-200 rounded-full p-2 flex items-center justify-center">
                                  <Icons.heart width={25} />

@@ -1,38 +1,48 @@
 'use client'
+import { BRANDS } from '@/constant/site-content'
 import { ScrollArea, ScrollBar } from '../ui/scroll-area'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { useState } from 'react'
 const FITER = [
    {
-      id: 1,
+      id: '1ergerrgerg',
       name: 'Tenis',
       icon: '/cleats.png'
    },
    {
-      id: 3,
+      id: 'regregreg',
       name: 'Tshirts',
       icon: '/tshirt.png'
    },
    {
-      id: 4,
+      id: 'regegergergerg',
       name: 'Calsças',
       icon: '/pants.png'
    },
    {
-      id: 5,
+      id: 'ergegergrgrgre',
       name: 'Acessesorios',
       icon: '/accessories.png'
    },
 ]
 
 const FitersSection = () => {
-   const [selectedIdx, setSelectedIdx] = useState<number | null>(null)
-   const handleSelectedItem = (id: number) => {
+   const [selectedIdx, setSelectedIdx] = useState<string | null>(null)
+   const handleSelectedItem = (id: string) => {
       setSelectedIdx(id)
    }
    return (
-      <section className='block sm:hidden mt-6 container'>
+      <section className='block sm:hidden mt-6 container space-y-7'>
+         <div className='flex items-center justify-between'>
+            {BRANDS.map((item) => (
+               <motion.div className={`p-2 rounded-lg w-fit flex items-center gap-2 text-white cursor-pointer transition-colors ${selectedIdx === item.id ? 'bg-neutral-700' : 'bg-slate-100'}`} key={item.id} onClick={() => handleSelectedItem(item.id)}>
+                  <motion.div className='relative size-[3.5rem]'>
+                     {item.logo}
+                  </motion.div>
+               </motion.div>
+            ))}
+         </div>
          <div className='flex items-center justify-between'>
             {FITER.map((item) => (
                <motion.div className={`p-2 rounded-lg w-fit flex items-center gap-2 text-white cursor-pointer transition-colors ${selectedIdx === item.id ? 'bg-neutral-700' : 'bg-slate-100'}`} key={item.id} onClick={() => handleSelectedItem(item.id)}>

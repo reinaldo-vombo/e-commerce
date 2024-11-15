@@ -23,7 +23,7 @@ type TAlertModal = {
 const AlertModal = ({ trigger, title, description, label, className, onSubmit }: TAlertModal) => {
    return (
       <AlertDialog>
-         <AlertDialogTrigger className={className} aria-label={label}>{trigger}</AlertDialogTrigger>
+         <AlertDialogTrigger className={className} aria-label={label ? label : 'dialog'}>{trigger}</AlertDialogTrigger>
          <AlertDialogContent>
             <AlertDialogHeader>
                <AlertDialogTitle>{title ? title : 'Are you absolutely sure?'}</AlertDialogTitle>

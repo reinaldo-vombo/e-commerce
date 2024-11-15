@@ -14,11 +14,7 @@ interface CartState {
 }
 
 // Save cart to local storage
-const saveCartToLocalStorage = (cart: CartItem[]) => {
-  if (typeof window !== 'undefined') {
-    localStorage.setItem('cart', JSON.stringify(cart));
-  }
-};
+
 export const useCartStore = create<CartState>((set) => ({
   cart: [], // Initialize cart from local storage
   loadCart: async () => {
