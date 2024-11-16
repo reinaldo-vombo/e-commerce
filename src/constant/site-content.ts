@@ -6,6 +6,11 @@ import {
   NDLogo,
   NikeLogo,
   PumaLogo,
+  SvgBraceletes,
+  SvgHoody,
+  SvgPants,
+  SvgShoe,
+  SvgTshirt,
 } from './svgIcons';
 
 export const siteContent = {
@@ -284,6 +289,33 @@ export const BRANDS = [
     logo: React.createElement(NDLogo, { width: 40, height: 40 }),
   },
 ];
+export const MOBILECATEGORY = [
+  {
+    id: '1122',
+    value: 'shoe',
+    logo: React.createElement(SvgShoe, { width: 40, height: 40 }),
+  },
+  {
+    id: '2211',
+    value: 'tshirt',
+    logo: React.createElement(SvgTshirt, { width: 40, height: 40 }),
+  },
+  {
+    id: '3322',
+    value: 'hoody',
+    logo: React.createElement(SvgHoody, { width: 40, height: 40 }),
+  },
+  {
+    id: '4433',
+    value: 'pants',
+    logo: React.createElement(SvgPants, { width: 40, height: 40 }),
+  },
+  {
+    id: '5544',
+    value: 'braceletes',
+    logo: React.createElement(SvgBraceletes, { width: 40, height: 40 }),
+  },
+]
 export const BRAND = [
   { id: 1, name: 'Nike', value: 'Nike' },
   { id: 2, name: 'Converse', value: 'Converse' },

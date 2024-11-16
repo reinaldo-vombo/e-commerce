@@ -112,3 +112,12 @@ export const blogSchema = z.object({
   }),
   status: z.string().optional(),
 });
+export const userSchema = z.object({
+  photo: z.array(z.instanceof(File)).nonempty({
+    message: 'Deve carregar uma imagem',
+  }),
+  name: z.string().min(1, {
+    message: 'Blog deve conter titulo',
+  }),
+  email: z.string().email(),
+});
