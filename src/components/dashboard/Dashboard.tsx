@@ -1,14 +1,17 @@
 "use client";
-import React, { ReactNode, useState } from "react";
-import { Sidebar, SidebarBody, SidebarLink } from "../ui/sidebar";
+import React, { Fragment, ReactNode, useState } from "react";
+import { Sidebar, SidebarBody, SidebarLink, SidebarLogOut } from "../ui/sidebar";
 
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
+
 import { cn } from "@/lib/utils";
 import { ArrowLeft, ArrowUpDown, BookCheck, CreditCard, Home, Images, LucideBoxes, Megaphone, MessageSquare, Settings, ShoppingBag, Store, User } from "lucide-react";
 import NavBar from "./NavBar";
 import { Separator } from "../ui/separator";
+import { signOut } from "next-auth/react";
+import { User as U } from '@/lib/auth/user'
 
 type TDashbord = {
    children: ReactNode
@@ -16,6 +19,7 @@ type TDashbord = {
 
 const links = [
    {
+      id: '1',
       label: "Dashboard",
       href: "#",
       icon: (
@@ -23,6 +27,7 @@ const links = [
       ),
    },
    {
+      id: '2',
       label: "Productos",
       href: "/dashboard/product",
       icon: (
@@ -30,6 +35,7 @@ const links = [
       ),
    },
    {
+      id: '3',
       label: "Inventorio",
       href: "/dashboard/inventory-managemant",
       icon: (
@@ -37,6 +43,7 @@ const links = [
       ),
    },
    {
+      id: '4',
       label: "Encomendas",
       href: "/dashboard/orders",
       icon: (
@@ -44,6 +51,7 @@ const links = [
       ),
    },
    {
+      id: '5',
       label: "Devoluções",
       href: "#",
       icon: (
@@ -51,6 +59,7 @@ const links = [
       ),
    },
    {
+      id: '6',
       label: "Pagamentos",
       href: "#",
       icon: (
@@ -58,6 +67,7 @@ const links = [
       ),
    },
    {
+      id: '7',
       label: "Loja",
       href: "/dashboard/store-management",
       icon: (
@@ -65,6 +75,7 @@ const links = [
       ),
    },
    {
+      id: '8',
       label: "Campanha",
       href: "#",
       icon: (
@@ -72,6 +83,7 @@ const links = [
       ),
    },
    {
+      id: '9',
       label: "Blog",
       href: "/dashboard/blog-management",
       icon: (
@@ -79,6 +91,7 @@ const links = [
       ),
    },
    {
+      id: '10',
       label: "Gerenciar úsuarios",
       href: "#",
       icon: (
@@ -86,6 +99,7 @@ const links = [
       ),
    },
    {
+      id: '11',
       label: "Feedback",
       href: "#",
       icon: (
@@ -93,6 +107,7 @@ const links = [
       ),
    },
    {
+      id: '12',
       label: "Definições",
       href: "#",
       icon: (
@@ -100,6 +115,7 @@ const links = [
       ),
    },
    {
+      id: '13',
       label: "Sair",
       href: "#",
       icon: (
@@ -108,6 +124,10 @@ const links = [
    },
 ];
 export function Dasboard({ children }: TDashbord) {
+   const user = U()
+   const logout = () => {
+      signOut()
+   }
    const [open, setOpen] = useState(false);
    return (
       <div
@@ -121,15 +141,19 @@ export function Dasboard({ children }: TDashbord) {
                <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
                   {open ? <Logo /> : <LogoIcon />}
                   <div className="mt-8 flex flex-col gap-2">
-                     {links.map((link, idx) => (
-                        <SidebarLink key={idx} link={link} />
+                     {links.map((link) => (
+                        <Fragment key={link.id}>
+                           {link.id === '13' ? (<SidebarLogOut logout={logout} link={link} />) : (
+                              <SidebarLink link={link} />
+                           )}
+                        </Fragment>
                      ))}
                   </div>
                </div>
                <div>
                   <SidebarLink
                      link={{
-                        label: "Manu Arora",
+                        label: user?.name ? user.name : '',
                         href: "/dashboard/profile",
                         icon: (
                            <Image

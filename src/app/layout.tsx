@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "sonner";
 import { Suspense } from "react";
 import Loading from "./loading";
+import SessionWrapper from "@/components/provider/SessionWrapper";
 
 const archivo = Archivo({ subsets: ["latin"], weight: ["500"], display: 'swap', variable: '--font-archivo' })
 const montserrat = Archivo({ subsets: ["latin"], weight: ["200", "400", "500"], display: 'swap', variable: '--font-montserrat' })
@@ -51,15 +52,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${montserrat.className} ${archivo.className}`}>
-        <Suspense fallback={<Loading />}>
-          {children}
-        </Suspense>
-        <Toaster
-          position="bottom-right"
-        />
-      </body>
-    </html>
+    <SessionWrapper>
+      <html lang="en">
+        <body className={`${montserrat.className} ${archivo.className}`}>
+          <Suspense fallback={<Loading />}>
+            {children}
+          </Suspense>
+          <Toaster
+            position="bottom-right"
+          />
+        </body>
+      </html>
+    </SessionWrapper>
   );
 }

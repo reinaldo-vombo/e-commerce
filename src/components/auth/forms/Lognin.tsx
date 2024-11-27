@@ -6,7 +6,6 @@ import {
    FormItem,
    FormLabel,
    FormMessage,
-   useFormField,
 } from '@/components/ui/form'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -18,12 +17,32 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { TFormView } from '@/types'
+import { signIn } from "next-auth/react";
+import { redirect } from 'next/navigation'
 
 const Lognin = ({ view }: TFormView) => {
-   function onSubmit(value: z.infer<typeof logninSchema>) {
-      console.log(value)
-      toast.success('hhhhh')
-      // Handle form submission
+
+   async function onSubmit(value: z.infer<typeof logninSchema>) {
+      const email = value.email
+      const password = value.password
+      try {
+         const result = await signIn("credentials", {
+            redirect: false,
+            email,
+            password,
+         });
+
+         if (result?.error) {
+            toast.warning("Email ou Senha incorreta");
+            console.error(result.error);
+         } else {
+            toast.success("Bem-vindo ao portal");
+            redirect('/dashboard')
+         }
+      } catch (error) {
+         console.error(error);
+         toast.error("Ocorreu um erro ao fazer login.");
+      }
    }
    const form = useForm<z.infer<typeof logninSchema>>({
       resolver: zodResolver(logninSchema),

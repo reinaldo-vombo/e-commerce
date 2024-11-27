@@ -6,9 +6,10 @@ import Login from './forms/Lognin'
 import Register from './forms/Register'
 import ResetPassword from './forms/ResetPassword'
 import ForgotPasswor from './forms/ForgotPasswor';
-import { useSearchParams } from 'next/navigation';
+import { redirect, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { Icons } from '@/constant/icons';
+import { signIn, useSession } from "next-auth/react";
 
 const variants = {
    enter: (direction: any) => ({
@@ -26,6 +27,7 @@ const variants = {
 };
 
 const AuthContainer = () => {
+   const { data: session } = useSession()
    const searchParams = useSearchParams();
    const paramView = searchParams.get('view')
    const [formView, setFormView] = useState('login')
@@ -37,6 +39,9 @@ const AuthContainer = () => {
       return 0; // for the same view
    };
    // if(paramView && paramView === '')
+   if (session?.user) {
+      redirect('/dashboard')
+   }
    return (
       <section className='grid min-h-screen grid-cols-1 bg-slate-50 md:grid-cols-[1fr,_400px] lg:grid-cols-[1fr,_600px]'>
          <div className='flex items-center justify-center pb-4 pt-20 md:py-20'>

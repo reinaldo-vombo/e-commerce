@@ -1,0 +1,146 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Customers {
+  id        Int       @id @default(autoincrement())
+  name      String    @db.VarChar(256)
+  email     String    @db.VarChar(100)
+  avatar    String?   @db.VarChar(256)
+  password  String    @db.VarChar(256)
+  address   String?   @db.VarChar(256)
+  latitude  Float?
+  longitude Float?
+  roleId    Int
+  role      Roles     @relation(fields: [roleId], references: [id])
+  Reviews   Reviews[]
+  Orders    Orders[]
+
+  @@map("customers")
+}
+
+enum DiscountType {
+  percentage
+  fixed
+}
+
+model Categories {
+  id   Int    @id @default(autoincrement())
+  name String @db.VarChar(20)
+
+  @@map("categorys")
+}
+
+model Coupons {
+  id                 Int          @id @default(autoincrement())
+  code               String       @unique @db.VarChar(50)
+  discountType       DiscountType
+  discountValue      Decimal
+  minimumOrderValue  Decimal?
+  maxUses            Int          @default(1)
+  maxUsesPerCustomer Int          @default(1)
+  startDate          DateTime
+  expiryDate         DateTime?
+  isActive           Boolean      @default(true)
+  Orders             Orders[]
+
+  @@map("coupons")
+}
+
+model Orders {
+  id         Int          @id @default(autoincrement())
+  couponId   Int?
+  coupon     Coupons?     @relation(fields: [couponId], references: [id])
+  total      Decimal
+  status     String       @db.VarChar(10)
+  customerId Int
+  customer   Customers    @relation(fields: [customerId], references: [id])
+  orderDate  DateTime     @default(now())
+  Items      OrderItems[]
+
+  @@map("orders")
+}
+
+model OrderItems {
+  id        Int      @id @default(autoincrement())
+  orderId   Int
+  order     Orders   @relation(fields: [orderId], references: [id])
+  productId String
+  product   Products @relation(fields: [productId], references: [id])
+  quantity  Int
+  price     Decimal
+
+  @@map("order_items")
+}
+
+model Products {
+  id          String       @id @default(uuid())
+  name        String       @db.VarChar(255)
+  size        Json
+  gender      String
+  status      String
+  brand       String       @db.VarChar(15)
+  style       Json?
+  category    Json
+  price       Int
+  gallery     Json?
+  image       String       @db.VarChar(255)
+  images      Json
+  description String
+  details     String?
+  favorites   Int?         @default(0)
+  purchases   Int?         @default(0)
+  refunds     Int?         @default(0)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  Reviews     Reviews[]
+  OrderItems  OrderItems[]
+
+  @@map("products")
+}
+
+model Reviews {
+  id         String    @id @default(uuid())
+  productId  String
+  product    Products  @relation(fields: [productId], references: [id])
+  customerId Int
+  customer   Customers @relation(fields: [customerId], references: [id])
+  comment    String?
+  stars      Int
+
+  @@map("reviews")
+}
+
+model Users {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  avatar    String?  @db.Text
+  password  String   @unique
+  roleId    Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  role      Roles    @relation(fields: [roleId], references: [id])
+
+  @@map("users")
+}
+
+model Roles {
+  id        Int         @id @default(autoincrement())
+  roleName  String      @unique @db.VarChar(10)
+  Users     Users[]
+  Customers Customers[]
+
+  @@map("roles")
+}

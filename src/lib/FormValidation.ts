@@ -1,3 +1,4 @@
+import { DiscountType } from '@prisma/client';
 import { z } from 'zod';
 
 export const productSchema = z.object({
@@ -120,4 +121,29 @@ export const userSchema = z.object({
     message: 'Blog deve conter titulo',
   }),
   email: z.string().email(),
+});
+export const couponSchema = z.object({
+  code: z
+    .string()
+    .min(1, 'Coupon code is required')
+    .max(50, 'Maximum 50 characters'),
+  discountType: z.nativeEnum(DiscountType, {
+    errorMap: () => ({ message: 'Select a discount type' }),
+  }),
+  discountValue: z.number().min(0, 'Value must be greater than 0'),
+  minimumOrderValue: z.number().optional(),
+  maxUses: z.number().default(1),
+  maxUsesPerCustomer: z.number().default(1),
+  startDate: z
+    .string()
+    .refine((val) => !isNaN(Date.parse(val)), {
+      message: 'Invalid start date',
+    }),
+  expiryDate: z
+    .string()
+    .optional()
+    .refine((val) => val === '' || !isNaN(Date.parse(val ? val : '')), {
+      message: 'Invalid expiry date',
+    }),
+  isActive: z.boolean(),
 });

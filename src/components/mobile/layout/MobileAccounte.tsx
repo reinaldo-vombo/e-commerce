@@ -5,7 +5,6 @@ import MobileOrders from "./MobileOrders";
 import Paymente from "@/components/layout/Payment";
 import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { AlertDialog } from "@/components/ui/alert-dialog";
 
 const MODAL_VIEWS = [
    { id: 1, label: "Encomendas", icon: <Box width={20} />, component: <MobileOrders /> },
